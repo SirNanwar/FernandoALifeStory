@@ -1,0 +1,26 @@
+﻿@model IEnumerable<FernandoALifeStory.Data.Models.Course>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <div class="col-md-3">
+        <h1>ASP.NET</h1>
+        <div>
+                @foreach (var course in Model)
+                {
+                    @course.Name
+                    <ul>
+                        <li>@course.Description</li>
+                        <li>@nameof(course.Skills) :</li>
+                        <ul>
+                            @foreach (var skill in course.Skills)
+                            {
+                                <li>@skill</li>
+                            }
+                        </ul>
+                    </ul>
+                }
+        </div>
+    </div>
+</div>
