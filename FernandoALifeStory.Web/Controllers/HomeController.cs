@@ -11,16 +11,21 @@ namespace FernandoALifeStory.Web.Controllers
 {
     public class HomeController : Controller
     {
-        ICourseData db;
+        ICourseData courseDB;
 
         public HomeController()
         {
-            db = new InMemoryCourseData();
+            courseDB = new InMemoryCourseData();
         }
 
         public IActionResult Index()
         {
-            var model = db.GetAll();
+            return View();
+        }
+
+        public IActionResult Courses()
+        {
+            var model = courseDB.GetAll();
 
             return View(model);
         }
