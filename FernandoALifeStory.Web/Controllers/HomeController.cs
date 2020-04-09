@@ -23,11 +23,26 @@ namespace FernandoALifeStory.Web.Controllers
             return View();
         }
 
+        public IActionResult WorkExperience()
+        {
+            return View();
+        }
+
+        public IActionResult Academics()
+        {
+            return View();
+        }
+
         public IActionResult Courses()
         {
             var model = courseDB.GetAll();
 
             return View(model);
+        }
+
+        public IActionResult Books()
+        {
+            return View();
         }
 
         public IActionResult About()

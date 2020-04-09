@@ -3,9 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FernandoALifeStory.Web", "FernandoALifeStory.Web\FernandoALifeStory.Web.csproj", "{B09E3055-ED92-4414-B2E9-6C4C3451B8B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FernandoALifeStory.Web", "FernandoALifeStory.Web\FernandoALifeStory.Web.csproj", "{B09E3055-ED92-4414-B2E9-6C4C3451B8B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FernandoALifeStory.Data", "FernandoALifeStory.Data\FernandoALifeStory.Data.csproj", "{15AF308A-DDC1-4281-85C0-2FEC87CCF08A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FernandoALifeStory.Data", "FernandoALifeStory.Data\FernandoALifeStory.Data.csproj", "{15AF308A-DDC1-4281-85C0-2FEC87CCF08A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{64E0A81F-08D5-46E6-9F5D-A3A5265B7C93}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
