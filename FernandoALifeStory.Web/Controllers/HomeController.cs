@@ -13,9 +13,9 @@ namespace FernandoALifeStory.Web.Controllers
     {
         ICourseData courseDB;
 
-        public HomeController()
+        public HomeController(ICourseData courseDB)
         {
-            courseDB = new InMemoryCourseData();
+            this.courseDB = courseDB;
         }
 
         public IActionResult Index()
