@@ -1,7 +1,7 @@
 # Fernando A Life Story
 ## Version 0.8
 
-Personal portfolio for my academic and professional achievements.
+Personal portfolio for my academic and professional achievements. 
 
 Developed using ASP.NET MVC.
 
