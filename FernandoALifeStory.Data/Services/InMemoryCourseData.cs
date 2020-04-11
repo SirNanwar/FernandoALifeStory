@@ -28,5 +28,10 @@ namespace FernandoALifeStory.Data.Services
         {
             return courses.OrderBy(r => r.Name);
         }
+
+        public Course GetById(int id)
+        {
+            return courses.FirstOrDefault(x => x.Id.Equals(id));
+        }
     }
 }

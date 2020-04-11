@@ -33,13 +33,6 @@ namespace FernandoALifeStory.Web.Controllers
             return View();
         }
 
-        public IActionResult Courses()
-        {
-            var model = courseDB.GetAll();
-
-            return View(model);
-        }
-
         public IActionResult Books()
         {
             return View();

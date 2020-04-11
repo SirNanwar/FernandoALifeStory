@@ -7,5 +7,6 @@ namespace FernandoALifeStory.Data.Services
     public interface ICourseData
     {
         IEnumerable<Course> GetAll();
+        Course GetById(int id);
     }
 }
