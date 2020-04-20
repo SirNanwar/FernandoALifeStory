@@ -16,11 +16,11 @@ namespace FernandoALifeStory.Data.Services
                 new Course{ Id = 1,
                             Name ="ASP.NET MVC 5 Fundamentals",
                             Description ="TBD",
-                            Skills = new List<Skills>{Skills.CSharp,
-                                                      Skills.ASPdotNET,
-                                                      Skills.dotNET,
-                                                      Skills.MVC,
-                                                      Skills.VisualStudio}}
+                            Skills = new List<Skill>{new Skill(){ Name = "C#"},
+                                                      new Skill(){ Name = "ASP.NET"},
+                                                      new Skill(){ Name = ".NET"},
+                                                      new Skill(){ Name = "MVC"},
+                                                      new Skill(){ Name = "Visual Studio"},}}
             };
         }
 
