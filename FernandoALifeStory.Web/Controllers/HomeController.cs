@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FernandoALifeStory.Web.Models;
-using FernandoALifeStory.Data.Services;
+using FernandoALifeStory.Data.Services.Courses;
 
 namespace FernandoALifeStory.Web.Controllers
 {

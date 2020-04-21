@@ -1,8 +1,8 @@
-﻿using FernandoALifeStory.Data.Models;
+﻿using FernandoALifeStory.Data.Models.Courses;
 using System.Collections.Generic;
 using System.Text;
 
-namespace FernandoALifeStory.Data.Services
+namespace FernandoALifeStory.Data.Services.Courses
 {
     public interface ICourseData
     {

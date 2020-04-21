@@ -1,16 +1,15 @@
-﻿using System;
+﻿using FernandoALifeStory.Data.Models.Transversal;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace FernandoALifeStory.Data.Models
+namespace FernandoALifeStory.Data.Models.Books
 {
-    public class Course
+    public class Book
     {
         public int Id { get; set; }
-        [Required]
-        [MaxLength(255)]
         public string Name { get; set; }
+        public string AuthorName { get; set; }
         public string Description { get; set; }
         public List<Skill> Skills { get; set; }
     }

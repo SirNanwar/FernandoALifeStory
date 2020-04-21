@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FernandoALifeStory.Data.Services;
+using FernandoALifeStory.Data.Services.Academics;
+using FernandoALifeStory.Data.Services.Books;
+using FernandoALifeStory.Data.Services.Certifications;
+using FernandoALifeStory.Data.Services.Courses;
+using FernandoALifeStory.Data.Services.Infos;
+using FernandoALifeStory.Data.Services.WorkExperiences;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -36,12 +42,29 @@ namespace FernandoALifeStory.Web
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddDbContext<CourseDbContext>(option => {
-                option.UseSqlServer(Configuration.GetConnectionString("CourseDbContext"));
+            services.AddDbContext<FernandoDbContext>(option => {
+                option.UseSqlServer(Configuration.GetConnectionString("FernandoDbContext"));
                 });
 
 
+            services.AddTransient<INfoData, SqlInfoData>();
+            services.AddTransient<IContactInfoData, SqlContactInfoData>();
+            services.AddTransient<ISocialMediaInfoData, SqlSocialMediaInfoData>();
+
+            services.AddTransient<ICoursePlatformData, SqlCoursePlatformData>();
             services.AddTransient<ICourseData, SqlCourseData>();
+
+            services.AddTransient<IDegreeData, SqlDegreeData>();
+            services.AddTransient<IDisciplineData, SqlDisciplineData>();
+            services.AddTransient<IProjectData, SqlProjectData>();
+
+            services.AddTransient<IBookData, SqlBookData>();
+
+            services.AddTransient<IWorkData, SqlWorkData>();
+            services.AddTransient<IAchievementData, SqlAchievementData>();
+
+            services.AddTransient<ICertificationData, SqlCertificationData>();
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
         }
@@ -72,7 +95,7 @@ namespace FernandoALifeStory.Web
 
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
-                var context = serviceScope.ServiceProvider.GetRequiredService<CourseDbContext>();
+                var context = serviceScope.ServiceProvider.GetRequiredService<FernandoDbContext>();
                 context.Database.EnsureCreated();
             }
         }

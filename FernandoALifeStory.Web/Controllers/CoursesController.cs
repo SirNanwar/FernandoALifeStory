@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FernandoALifeStory.Data.Services;
+using FernandoALifeStory.Data.Services.Courses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FernandoALifeStory.Web.Controllers
