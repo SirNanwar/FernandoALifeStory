@@ -4,6 +4,7 @@ using FernandoALifeStory.Data.Models.Certifications;
 using FernandoALifeStory.Data.Models.Courses;
 using FernandoALifeStory.Data.Models.Infos;
 using FernandoALifeStory.Data.Models.WorkExperiences;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.IO.IsolatedStorage;

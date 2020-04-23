@@ -1,20 +1,20 @@
-﻿@model FernandoALifeStory.Data.Models.Course
+﻿@model FernandoALifeStory.Data.Models.Courses.Course
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h2>Details for @Html.DisplayFor(model => model.Name)</h2>
+<h2>Details for @Html.DisplayFor(model => model.CourseName)</h2>
 
 <div>
     <h4>Course</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.CourseName)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.CourseName)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Description)

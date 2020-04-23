@@ -1,6 +1,7 @@
 ﻿using FernandoALifeStory.Data.Models.Certifications;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace FernandoALifeStory.Data.Services.Certifications
@@ -21,7 +22,7 @@ namespace FernandoALifeStory.Data.Services.Certifications
 
         public Certification GetById(int id)
         {
-            return db.Certifications.FirstOrDefault(x => x.Id = id);
+            return db.Certifications.FirstOrDefault(x => x.Id == id);
         }
     }
 }

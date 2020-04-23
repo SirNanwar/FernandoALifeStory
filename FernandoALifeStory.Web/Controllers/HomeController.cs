@@ -11,13 +11,6 @@ namespace FernandoALifeStory.Web.Controllers
 {
     public class HomeController : Controller
     {
-        ICourseData courseDB;
-
-        public HomeController(ICourseData courseDB)
-        {
-            this.courseDB = courseDB;
-        }
-
         public IActionResult Index()
         {
             return View();

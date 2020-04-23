@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FernandoALifeStory.Data.Models.Course>
+﻿@model IEnumerable<FernandoALifeStory.Data.Models.Courses.Course>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,7 +13,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.CourseName)
             </th>
             <th></th>
         </tr>
@@ -22,7 +22,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.CourseName)
             </td>
             <td>
                 @Html.ActionLink("Details", "Details", new { id=item.Id })

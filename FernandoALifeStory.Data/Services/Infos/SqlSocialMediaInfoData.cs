@@ -17,7 +17,7 @@ namespace FernandoALifeStory.Data.Services.Infos
 
         public IEnumerable<SocialMediaInfo> GetAll()
         {
-            return db.SocialMediaInfos.OrderBy(x => x.Type);
+            return db.SocialMediaInfos.OrderBy(x => x.SocialMediaType);
         }
 
         public SocialMediaInfo GetById(int id)

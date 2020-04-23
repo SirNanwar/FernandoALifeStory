@@ -17,7 +17,7 @@ namespace FernandoALifeStory.Data.Services.Courses
 
         public IEnumerable<Course> GetAll()
         {
-            return db.Courses.OrderBy(x => x.Name);
+            return db.Courses.OrderBy(x => x.CourseName);
         }
 
         public Course GetById(int id)
