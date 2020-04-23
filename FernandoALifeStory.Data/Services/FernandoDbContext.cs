@@ -35,7 +35,6 @@ namespace FernandoALifeStory.Data.Services
         public FernandoDbContext(DbContextOptions options)
             : base(options)
         {
-
         }
     }
 }
