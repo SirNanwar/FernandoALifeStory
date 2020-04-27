@@ -12,7 +12,7 @@ namespace FernandoALifeStory.Data.Models.Academics
         public int ECTs { get; set; }
         public Project Project { get; set; }
         public List<Skill> Skills { get; set; }
-        public Course Course { get; set; }
-        public int CourseId { get; set; }
+        public Degree Degree { get; set; }
+        public int DegreeId { get; set; }
     }
 }

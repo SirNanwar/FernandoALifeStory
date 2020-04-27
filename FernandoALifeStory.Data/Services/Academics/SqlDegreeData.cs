@@ -15,7 +15,7 @@ namespace FernandoALifeStory.Data.Services.Academics
             this.db = db;
         }
 
-        public IEnumerable<Degree> GetlAll()
+        public IEnumerable<Degree> GetAll()
         {
             return db.Degrees.OrderBy(x => x.StartDate);
         }
@@ -23,6 +23,16 @@ namespace FernandoALifeStory.Data.Services.Academics
         public Degree GetById(int id)
         {
             return db.Degrees.FirstOrDefault(x => x.Id == id);
+        }
+
+        public IEnumerable<Discipline> GetCurriculumByDegreeId(int id)
+        {
+            return db.Disciplines.Where(x => x.DegreeId == id);
+        }
+
+        public IEnumerable<Project> GetProjectByDisciplineId(int id)
+        {
+            return db.Projects.Where(x => x.DisciplineId == id);
         }
     }
 }

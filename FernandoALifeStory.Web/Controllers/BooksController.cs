@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FernandoALifeStory.Data.Services.Courses;
+using FernandoALifeStory.Data.Services.Books;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FernandoALifeStory.Web.Controllers
 {
-    public class CoursesController : Controller
+    public class BooksController : Controller
     {
-        private readonly ICourseData db;
+        private readonly IBookData db;
 
-        public CoursesController(ICourseData db)
+        public BooksController(IBookData db)
         {
             this.db = db;
         }
