@@ -25,5 +25,10 @@ namespace FernandoALifeStory.Data.Services.Courses
         {
             return db.CoursePlatorms.FirstOrDefault(x => x.Id == id);
         }
+
+        public IEnumerable<Course> GetCoursesByPlatformId(int id)
+        {
+            return db.Courses.Where(x => x.CoursePlatformId == id);
+        }
     }
 }

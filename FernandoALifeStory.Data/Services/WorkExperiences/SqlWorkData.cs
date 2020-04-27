@@ -24,5 +24,10 @@ namespace FernandoALifeStory.Data.Services.WorkExperiences
         {
             return db.WorkExperiences.FirstOrDefault(x => x.Id == id);
         }
+
+        public IEnumerable<Achievement> GetAchievementsByWorkId(int id)
+        {
+            return db.Achievements.Where(x => x.WorkId == id);
+        }
     }
 }

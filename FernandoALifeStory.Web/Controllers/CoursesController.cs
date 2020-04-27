@@ -9,24 +9,41 @@ namespace FernandoALifeStory.Web.Controllers
 {
     public class CoursesController : Controller
     {
-        private readonly ICourseData db;
+        private readonly ICoursePlatformData platformDB;
+        private readonly ICourseData courseDB;
 
-        public CoursesController(ICourseData db)
+        public ICourseData CourseDB => courseDB;
+
+        public CoursesController(ICoursePlatformData platformDB,
+                                 ICourseData courseDB)
         {
-            this.db = db;
+            this.platformDB = platformDB;
+            this.courseDB = courseDB;
         }
 
         public IActionResult Index()
         {
-            var model = db.GetAll();
+            var model = platformDB.GetAll();
+            return View(model);
+        }
+
+        public IActionResult Courses(int id)
+        {
+            var model = platformDB.GetCoursesByPlatformId(id);
+
+            if(model is null)
+            {
+                return View("NotFound");
+            }
+
             return View(model);
         }
 
         public IActionResult Details(int id)
         {
-            var model = db.GetById(id);
+            var model = CourseDB.GetById(id);
 
-            if(model is null)
+            if (model is null)
             {
                 return View("NotFound");
             }
