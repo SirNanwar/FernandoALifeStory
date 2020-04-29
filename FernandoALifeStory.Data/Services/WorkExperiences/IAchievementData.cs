@@ -9,5 +9,6 @@ namespace FernandoALifeStory.Data.Services.WorkExperiences
     {
         IEnumerable<Achievement> GetAll();
         Achievement GetById(int id);
+        IEnumerable<Achievement> GetAchievementsByWorkId(int id);
     }
 }

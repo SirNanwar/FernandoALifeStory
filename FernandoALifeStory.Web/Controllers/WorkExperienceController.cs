@@ -9,22 +9,25 @@ namespace FernandoALifeStory.Web.Controllers
 {
     public class WorkExperienceController : Controller
     {
-        private readonly IWorkData db;
+        private readonly IWorkData workDB;
+        private readonly IAchievementData achievementDB;
 
-        public WorkExperienceController(IWorkData db)
+        public WorkExperienceController(IWorkData workDB,
+                                        IAchievementData achievementDB)
         {
-            this.db = db;
+            this.workDB = workDB;
+            this.achievementDB = achievementDB;
         }
 
         public IActionResult Index()
         {
-            var model = db.GetAll();
+            var model = workDB.GetAll();
             return View(model);
         }
 
         public IActionResult Details(int id)
         {
-            var model = db.GetAchievementsByWorkId(id);
+            var model = achievementDB.GetAchievementsByWorkId(id);
 
             if (model is null)
             {

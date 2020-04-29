@@ -9,7 +9,5 @@ namespace FernandoALifeStory.Data.Services.Academics
     {
         IEnumerable<Degree> GetAll();
         Degree GetById(int id);
-        IEnumerable<Discipline> GetCurriculumByDegreeId(int id);
-        IEnumerable<Project> GetProjectByDisciplineId(int id);
     }
 }

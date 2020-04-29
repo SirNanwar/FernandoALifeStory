@@ -4,31 +4,27 @@ using System.Collections.Generic;
 using System.Text;
 using FernandoALifeStory.Data.Models.Courses;
 using System.Text.RegularExpressions;
+using Microsoft.EntityFrameworkCore;
 
 namespace FernandoALifeStory.Data.Services.Courses
 {
     public class SqlCoursePlatformData : ICoursePlatformData
     {
-        private readonly FernandoDbContext db;
+        private readonly DbSet<CoursePlatform> coursePlatforms;
 
         public SqlCoursePlatformData(FernandoDbContext db)
         {
-            this.db = db;
+            this.coursePlatforms = db.CoursePlatforms;
         }
 
         public IEnumerable<CoursePlatform> GetAll()
         {
-            return db.CoursePlatorms.OrderBy(x => x.Name);
+            return coursePlatforms.OrderBy(x => x.Name);
         }
 
         public CoursePlatform GetById(int id)
         {
-            return db.CoursePlatorms.FirstOrDefault(x => x.Id == id);
-        }
-
-        public IEnumerable<Course> GetCoursesByPlatformId(int id)
-        {
-            return db.Courses.Where(x => x.CoursePlatformId == id);
+            return coursePlatforms.FirstOrDefault(x => x.Id == id);
         }
     }
 }

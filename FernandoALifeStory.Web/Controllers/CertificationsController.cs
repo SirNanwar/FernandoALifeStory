@@ -9,16 +9,16 @@ namespace FernandoALifeStory.Web.Controllers
 {
     public class CertificationsController : Controller
     {
-        private readonly ICertificationData db;
+        private readonly ICertificationData certificationDB;
 
-        public CertificationsController(ICertificationData db)
+        public CertificationsController(ICertificationData certificationDB)
         {
-            this.db = db;
+            this.certificationDB = certificationDB;
         }
 
         public IActionResult Index()
         {
-            var model = db.GetAll();
+            var model = certificationDB.GetAll();
             return View(model);
         }
     }

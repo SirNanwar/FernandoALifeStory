@@ -12,8 +12,6 @@ namespace FernandoALifeStory.Web.Controllers
         private readonly ICoursePlatformData platformDB;
         private readonly ICourseData courseDB;
 
-        public ICourseData CourseDB => courseDB;
-
         public CoursesController(ICoursePlatformData platformDB,
                                  ICourseData courseDB)
         {
@@ -29,7 +27,7 @@ namespace FernandoALifeStory.Web.Controllers
 
         public IActionResult Courses(int id)
         {
-            var model = platformDB.GetCoursesByPlatformId(id);
+            var model = courseDB.GetCoursesByPlatformId(id);
 
             if(model is null)
             {
@@ -41,7 +39,7 @@ namespace FernandoALifeStory.Web.Controllers
 
         public IActionResult Details(int id)
         {
-            var model = CourseDB.GetById(id);
+            var model = courseDB.GetById(id);
 
             if (model is null)
             {

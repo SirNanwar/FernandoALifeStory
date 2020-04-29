@@ -8,5 +8,6 @@ namespace FernandoALifeStory.Data.Services.Courses
     {
         IEnumerable<Course> GetAll();
         Course GetById(int id);
+        IEnumerable<Course> GetCoursesByPlatformId(int id);
     }
 }

@@ -3,31 +3,27 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace FernandoALifeStory.Data.Services.WorkExperiences
 {
     public class SqlWorkData : IWorkData
     {
-        private readonly FernandoDbContext db;
+        private readonly DbSet<Work> workExperiences;
 
         public SqlWorkData(FernandoDbContext db)
         {
-            this.db = db;
+            this.workExperiences = db.WorkExperiences;
         }
 
         public IEnumerable<Work> GetAll()
         {
-            return db.WorkExperiences.OrderBy(x => x.StartDate);
+            return workExperiences.OrderBy(x => x.StartDate);
         }
 
         public Work GetById(int id)
         {
-            return db.WorkExperiences.FirstOrDefault(x => x.Id == id);
-        }
-
-        public IEnumerable<Achievement> GetAchievementsByWorkId(int id)
-        {
-            return db.Achievements.Where(x => x.WorkId == id);
+            return workExperiences.FirstOrDefault(x => x.Id == id);
         }
     }
 }

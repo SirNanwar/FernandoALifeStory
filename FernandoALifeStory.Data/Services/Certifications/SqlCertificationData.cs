@@ -1,4 +1,5 @@
 ﻿using FernandoALifeStory.Data.Models.Certifications;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,21 +9,21 @@ namespace FernandoALifeStory.Data.Services.Certifications
 {
     public class SqlCertificationData : ICertificationData
     {
-        private readonly FernandoDbContext db;
+        private readonly DbSet<Certification> certifications;
 
         public SqlCertificationData(FernandoDbContext db)
         {
-            this.db = db;
+            this.certifications = db.Certifications;
         }
 
         public IEnumerable<Certification> GetAll()
         {
-            return db.Certifications.OrderBy(x => x.CertificationName);
+            return certifications.OrderBy(x => x.CertificationName);
         }
 
         public Certification GetById(int id)
         {
-            return db.Certifications.FirstOrDefault(x => x.Id == id);
+            return certifications.FirstOrDefault(x => x.Id == id);
         }
     }
 }

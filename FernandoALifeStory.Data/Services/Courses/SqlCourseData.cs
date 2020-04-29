@@ -3,26 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using FernandoALifeStory.Data.Models.Courses;
+using Microsoft.EntityFrameworkCore;
 
 namespace FernandoALifeStory.Data.Services.Courses
 {
     public class SqlCourseData : ICourseData
     {
-        private readonly FernandoDbContext db;
+        private readonly DbSet<Course> courses;
 
         public SqlCourseData(FernandoDbContext db)
         {
-            this.db = db;
+            this.courses = db.Courses;
         }
 
         public IEnumerable<Course> GetAll()
         {
-            return db.Courses.OrderBy(x => x.CourseName);
+            return courses.OrderBy(x => x.CourseName);
         }
 
         public Course GetById(int id)
         {
-            return db.Courses.FirstOrDefault(x => x.Id == id);
+            return courses.FirstOrDefault(x => x.Id == id);
+        }
+
+        public IEnumerable<Course> GetCoursesByPlatformId(int id)
+        {
+            return courses.Where(x => x.CoursePlatformId == id);
         }
     }
 }

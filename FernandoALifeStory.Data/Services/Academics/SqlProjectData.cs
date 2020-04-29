@@ -1,4 +1,5 @@
 ﻿using FernandoALifeStory.Data.Models.Academics;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,21 +9,26 @@ namespace FernandoALifeStory.Data.Services.Academics
 {
     public class SqlProjectData : IProjectData
     {
-        private readonly FernandoDbContext db;
+        private readonly DbSet<Project> projects;
 
         public SqlProjectData(FernandoDbContext db)
         {
-            this.db = db;
+            this.projects = db.Projects;
         }
 
         public IEnumerable<Project> GetAll()
         {
-            return db.Projects.OrderBy(x => x.Name);
+            return projects.OrderBy(x => x.Name);
         }
 
         public Project GetById(int id)
         {
-            return db.Projects.FirstOrDefault(x => x.Id == id);
+            return projects.FirstOrDefault(x => x.Id == id);
+        }
+
+        public IEnumerable<Project> GetProjectsByDisciplineId(int id)
+        {
+            return projects.Where(x => x.DisciplineId == id);
         }
     }
 }

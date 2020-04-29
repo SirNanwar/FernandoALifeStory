@@ -9,5 +9,6 @@ namespace FernandoALifeStory.Data.Services.Academics
     {
         IEnumerable<Project> GetAll();
         Project GetById(int id);
+        IEnumerable<Project> GetProjectsByDisciplineId(int id);
     }
 }

@@ -9,22 +9,22 @@ namespace FernandoALifeStory.Web.Controllers
 {
     public class BooksController : Controller
     {
-        private readonly IBookData db;
+        private readonly IBookData bookDB;
 
-        public BooksController(IBookData db)
+        public BooksController(IBookData bookDB)
         {
-            this.db = db;
+            this.bookDB = bookDB;
         }
 
         public IActionResult Index()
         {
-            var model = db.GetAll();
+            var model = bookDB.GetAll();
             return View(model);
         }
 
         public IActionResult Details(int id)
         {
-            var model = db.GetById(id);
+            var model = bookDB.GetById(id);
 
             if(model is null)
             {

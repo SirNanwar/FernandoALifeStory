@@ -18,7 +18,7 @@ namespace FernandoALifeStory.Data.Services
         public DbSet<ContactInfo> ContactInfos { get; set; }
         public DbSet<SocialMediaInfo> SocialMediaInfos { get; set; }
 
-        public DbSet<CoursePlatform> CoursePlatorms { get; set; }
+        public DbSet<CoursePlatform> CoursePlatforms { get; set; }
         public DbSet<Course> Courses { get; set; }
 
         public DbSet<Degree> Degrees { get; set; }

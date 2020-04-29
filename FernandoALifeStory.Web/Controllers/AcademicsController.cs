@@ -9,22 +9,28 @@ namespace FernandoALifeStory.Web.Controllers
 {
     public class AcademicsController : Controller
     {
-        private readonly IDegreeData db;
+        private readonly IDegreeData degreeDB;
+        private readonly IDisciplineData disciplineDB;
+        private readonly IProjectData projectDB;
 
-        public AcademicsController(IDegreeData db)
+        public AcademicsController(IDegreeData degreeDB,
+                                   IDisciplineData disciplineDB,
+                                   IProjectData projectDB)
         {
-            this.db = db;
+            this.degreeDB = degreeDB;
+            this.disciplineDB = disciplineDB;
+            this.projectDB = projectDB;
         }
 
         public IActionResult Index()
         {
-            var model = db.GetAll();
+            var model = degreeDB.GetAll();
             return View(model);
         }
 
         public IActionResult Curriculum(int id)
         {
-            var model = db.GetCurriculumByDegreeId(id);
+            var model = disciplineDB.GetCurriculumByDegreeId(id);
 
             if (model == null)
             {
@@ -36,7 +42,7 @@ namespace FernandoALifeStory.Web.Controllers
 
         public IActionResult Project(int id)
         {
-            var model = db.GetProjectByDisciplineId(id);
+            var model = projectDB.GetProjectsByDisciplineId(id);
 
             if (model == null)
             {
