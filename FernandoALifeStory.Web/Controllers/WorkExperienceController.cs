@@ -25,7 +25,7 @@ namespace FernandoALifeStory.Web.Controllers
             return View(model);
         }
 
-        public IActionResult Details(int id)
+        public IActionResult Achievements(int id)
         {
             var model = achievementDB.GetAchievementsByWorkId(id);
 

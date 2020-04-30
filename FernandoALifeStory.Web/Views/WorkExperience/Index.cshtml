@@ -1,14 +1,11 @@
 ﻿@model IEnumerable<FernandoALifeStory.Data.Models.WorkExperiences.Work>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Work Experiences";
 }
 
-<h2>Index</h2>
+<h2>@ViewData["Title"]</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -43,7 +40,7 @@
                 @Html.DisplayFor(modelItem => item.EndDate)
             </td>
             <td>
-                @Html.ActionLink("Courses", "Courses", new { id=item.Id }) |
+                @Html.ActionLink("Achievements", "Achievements", new { id=item.Id }) |
             </td>
         </tr>
 }

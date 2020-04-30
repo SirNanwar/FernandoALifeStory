@@ -38,7 +38,7 @@ namespace FernandoALifeStory.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CoursePlatorms",
+                name: "CoursePlatforms",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -47,7 +47,7 @@ namespace FernandoALifeStory.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CoursePlatorms", x => x.Id);
+                    table.PrimaryKey("PK_CoursePlatforms", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -111,9 +111,9 @@ namespace FernandoALifeStory.Data.Migrations
                 {
                     table.PrimaryKey("PK_Courses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Courses_CoursePlatorms_CoursePlatformId",
+                        name: "FK_Courses_CoursePlatforms_CoursePlatformId",
                         column: x => x.CoursePlatformId,
-                        principalTable: "CoursePlatorms",
+                        principalTable: "CoursePlatforms",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });

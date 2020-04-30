@@ -146,7 +146,7 @@ namespace FernandoALifeStory.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CoursePlatorms");
+                    b.ToTable("CoursePlatforms");
                 });
 
             modelBuilder.Entity("FernandoALifeStory.Data.Models.Infos.ContactInfo", b =>
