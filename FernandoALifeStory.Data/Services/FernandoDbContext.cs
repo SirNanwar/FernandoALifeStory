@@ -2,7 +2,6 @@
 using FernandoALifeStory.Data.Models.Books;
 using FernandoALifeStory.Data.Models.Certifications;
 using FernandoALifeStory.Data.Models.Courses;
-using FernandoALifeStory.Data.Models.Infos;
 using FernandoALifeStory.Data.Models.WorkExperiences;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -14,10 +13,6 @@ namespace FernandoALifeStory.Data.Services
 {
     public class FernandoDbContext : DbContext
     {
-        public DbSet<Info> Info { get; set; }
-        public DbSet<ContactInfo> ContactInfos { get; set; }
-        public DbSet<SocialMediaInfo> SocialMediaInfos { get; set; }
-
         public DbSet<CoursePlatform> CoursePlatforms { get; set; }
         public DbSet<Course> Courses { get; set; }
 

@@ -7,7 +7,6 @@ using FernandoALifeStory.Data.Services.Academics;
 using FernandoALifeStory.Data.Services.Books;
 using FernandoALifeStory.Data.Services.Certifications;
 using FernandoALifeStory.Data.Services.Courses;
-using FernandoALifeStory.Data.Services.Infos;
 using FernandoALifeStory.Data.Services.WorkExperiences;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -43,11 +42,6 @@ namespace FernandoALifeStory.Web
                 option.UseSqlServer(Configuration.GetConnectionString("FernandoDbContext"));
             });
             
-
-            services.AddTransient<INfoData, SqlInfoData>();
-            services.AddTransient<IContactInfoData, SqlContactInfoData>();
-            services.AddTransient<ISocialMediaInfoData, SqlSocialMediaInfoData>();
-
             services.AddTransient<ICoursePlatformData, SqlCoursePlatformData>();
             services.AddTransient<ICourseData, SqlCourseData>();
 

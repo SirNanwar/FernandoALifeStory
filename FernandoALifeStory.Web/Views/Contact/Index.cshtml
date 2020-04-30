@@ -1,18 +1,13 @@
-﻿@model FernandoALifeStory.Data.Services.Infos.INfoData
-
-@{
-    ViewData["Title"] = "Index";
+﻿@{
+    ViewData["Title"] = "Contacts";
 }
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
 
-<h2>Index</h2>
-
-<div>
-    <h4>INfoData</h4>
-    <hr />
-    <dl class="dl-horizontal">
-    </dl>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
-</div>
+<address>
+    <strong>Phone:</strong> <a href="tel:+351916077957">+351 916077957</a><br />
+    <strong>Email:</strong> <a href="mailto:fernando.guerra.duarte@gmail.com">fernando.guerra.duarte@gmail.com</a><br />
+    <br />
+    <strong>LinkedIn:</strong> <a href="http://linkedin.com/in/fernando-guerra-duarte">linkedin.com/in/fernando-guerra-duarte</a><br />
+    <strong>GitHub:</strong> <a href="http://github.com/SirNanwar">github.com/SirNanwar</a>
+</address>
