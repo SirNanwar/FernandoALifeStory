@@ -1,5 +1,5 @@
 ﻿using FernandoALifeStory.Data.Models.Courses;
-using FernandoALifeStory.Data.Models.Transversal;
+using FernandoALifeStory.Data.Models.Skills;
 using System;
 using System.Collections.Generic;
 

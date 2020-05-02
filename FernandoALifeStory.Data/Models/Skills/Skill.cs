@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace FernandoALifeStory.Data.Models.Transversal
+namespace FernandoALifeStory.Data.Models.Skills
 {
     public class Skill
     {
