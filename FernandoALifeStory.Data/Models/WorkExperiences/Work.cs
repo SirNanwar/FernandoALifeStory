@@ -11,7 +11,7 @@ namespace FernandoALifeStory.Data.Models.WorkExperiences
         public string CompanyName { get; set; }
         public string Position { get; set; }
         public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
         public List<Achievement> Achievements { get; set; }
         public List<Skill> Skills { get; set; }
     }

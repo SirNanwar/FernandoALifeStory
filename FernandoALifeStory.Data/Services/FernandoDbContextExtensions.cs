@@ -1,6 +1,7 @@
 ﻿using FernandoALifeStory.Data.Models.Books;
 using FernandoALifeStory.Data.Models.Courses;
 using FernandoALifeStory.Data.Models.Skills;
+using FernandoALifeStory.Data.Models.WorkExperiences;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,6 +54,16 @@ namespace FernandoALifeStory.Data.Services
             Skill cleanCodeSkill = SkillGetOrAdd(context, "Clean Code", SkillType.ConceptSkill);
             Skill unitTestingSkill = SkillGetOrAdd(context, "Unit Testing", SkillType.ConceptSkill);
             Skill agileMethodologiesSkill = SkillGetOrAdd(context, "Agile Methodologies", SkillType.ConceptSkill);
+            Skill automatedTestingSkill = SkillGetOrAdd(context, "Automated Testing", SkillType.ConceptSkill);
+            Skill restAPISkill = SkillGetOrAdd(context, "REST API", SkillType.PatternSkill);
+            Skill voipSkill = SkillGetOrAdd(context, "VoIP Development", SkillType.ConceptSkill);
+            Skill cyberSecuritySkill = SkillGetOrAdd(context, "Cyber Security and Encryption", SkillType.ConceptSkill);
+            Skill continuousIntegrationSkill = SkillGetOrAdd(context, "Continuous Integration", SkillType.ConceptSkill);
+            Skill CPPSkill = SkillGetOrAdd(context, "C++", SkillType.LanguageSkill);
+            Skill SQLServerSkill = SkillGetOrAdd(context, "SQL Server", SkillType.TechnologySkill);
+            Skill visualStudioSkill = SkillGetOrAdd(context, "Visual Studio", SkillType.TechnologySkill);
+            Skill azureDevOpsSkill = SkillGetOrAdd(context, "Azure DevOps", SkillType.TechnologySkill);
+            Skill seleniumSkill = SkillGetOrAdd(context, "Selenium WebDriver", SkillType.TechnologySkill);
 
             #region Books
             Book cleanCodeBook = BookGetOrAdd(context, "Clean Code", "Robert C. Martin", "A Handbook of Agile Software Craftsmanship", designPatternsSkill, cleanCodeSkill, unitTestingSkill, agileMethodologiesSkill);
@@ -69,30 +80,73 @@ namespace FernandoALifeStory.Data.Services
                 Course aspDotNetMVCFundamentals = CourseGetOrAdd(context, pluralsightPlatform, "ASP.NET MVC 5 Fundamentals", "Fundamentals to ASP.NET MVC", aspDotNetSkill, mvcSkill, dotNETSkill, CSharpSkill);
                 Course entityFrameworkCore2GettingStarted = CourseGetOrAdd(context, pluralsightPlatform, "Entity Framework Core 2: Getting Started", "First introduction to Entity Framework Core 2, a Microsot O/RM", dotNETSkill, CSharpSkill, entityFrameworkCoreSkill, ormSkill);
                 Course cSharpFundamentals = CourseGetOrAdd(context, pluralsightPlatform, "C# Fundamentals", "Fundamentals to C# programming", dotNETSkill, CSharpSkill);
-
-                /*
-                Add other courses here from the same platform 
-                */
             }
 
             CoursePlatform udemyPlatform = CoursePlatformGetOrAdd(context, "Udemy");
             if (context.CoursePlatforms.Any(x => x.Name.Equals(udemyPlatform.Name)))
             {
                 Course designPatternsInCSharp = CourseGetOrAdd(context, udemyPlatform, "Design Patterns in C# and .NET", "A comprehensive overview of Design Patterns in C# and .NET from a practical perspective.", dotNETSkill, CSharpSkill, designPatternsSkill);
-
-                /*
-                Add other courses here from the same platform 
-                */
             }
             #endregion
 
             #region Work Experiences
-
+            Work collabWork = WorkExperienceGetOrAdd(context, "Collab", "Software Engineer", new DateTime(2018, 08, 10), null, 
+                dotNETSkill, CSharpSkill, entityFrameworkCoreSkill, ormSkill, 
+                unitTestingSkill, agileMethodologiesSkill, automatedTestingSkill, restAPISkill, 
+                voipSkill, cyberSecuritySkill, continuousIntegrationSkill, CPPSkill, 
+                SQLServerSkill, visualStudioSkill, azureDevOpsSkill, seleniumSkill);
+            if (context.WorkExperiences.Any(x => x.CompanyName.Equals(collabWork.CompanyName)))
+            {
+                Achievement microsservice = AchievementGetOrAdd(context, collabWork, "Developed a microservice REST API of asynchronous messaging with Entity Framework Core.");
+                Achievement encryption = AchievementGetOrAdd(context, collabWork, "Implemented real time encryption of RTP video calls. ");
+                Achievement autoTest = AchievementGetOrAdd(context, collabWork, "Guaranteed product continuous integration, developing integration and functional automated testing.");
+                Achievement sipDev = AchievementGetOrAdd(context, collabWork, "Worked on developing SIP solutions for VoIP calls. ");
+            }
             #endregion
 
             #region Academics
 
             #endregion
+        }
+
+        private static Achievement AchievementGetOrAdd(FernandoDbContext context, Work work, string description)
+        {
+            Achievement achievement = context.Achievements.FirstOrDefault(x => x.Description.Equals(description));
+            if (achievement is null)
+            {
+                achievement = new Achievement()
+                {
+                    Description = description,
+                    Work = work,
+                    WorkId = work.Id
+                };
+
+                work.Achievements.Add(achievement);
+                context.WorkExperiences.Update(work);
+                
+                context.Achievements.Add(achievement);
+                context.SaveChanges();
+            }
+            return achievement;
+        }
+
+        private static Work WorkExperienceGetOrAdd(FernandoDbContext context, string companyName, string position, DateTime startDate, DateTime? endDate, params Skill[] skills)
+        {
+            Work work = context.WorkExperiences.FirstOrDefault(x => x.CompanyName.Equals(companyName));
+            if (work is null)
+            {
+                work = new Work()
+                {
+                    CompanyName = companyName,
+                    Position = position,
+                    StartDate = startDate,
+                    EndDate = endDate,
+                    Skills = skills.ToList()
+                };
+                context.WorkExperiences.Add(work);
+                context.SaveChanges();
+            }
+            return work;
         }
 
         private static Book BookGetOrAdd(FernandoDbContext context, string bookName, string bookAuthor, string bookDescription, params Skill[] skills)
@@ -138,6 +192,9 @@ namespace FernandoALifeStory.Data.Services
                     Description = courseDescription,
                     Skills = skills.ToList()
                 };
+                coursePlatform.Courses.Add(course);
+                context.CoursePlatforms.Update(coursePlatform);
+
                 context.Courses.Add(course);
                 context.SaveChanges();
             }
