@@ -25,6 +25,11 @@ namespace FernandoALifeStory.Web.Controllers
         public IActionResult Index()
         {
             var model = degreeDB.GetAll();
+
+            if (model.Count() == 0)
+            {
+                return View("NoDegrees");
+            }
             return View(model);
         }
 

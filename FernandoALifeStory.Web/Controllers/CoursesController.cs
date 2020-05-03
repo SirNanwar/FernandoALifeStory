@@ -22,6 +22,11 @@ namespace FernandoALifeStory.Web.Controllers
         public IActionResult Index()
         {
             var model = platformDB.GetAll();
+
+            if(model.Count() == 0)
+            {
+                return View("NoCourse");
+            }
             return View(model);
         }
 

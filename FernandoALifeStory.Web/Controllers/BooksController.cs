@@ -19,6 +19,11 @@ namespace FernandoALifeStory.Web.Controllers
         public IActionResult Index()
         {
             var model = bookDB.GetAll();
+
+            if (model.Count() == 0)
+            {
+                return View("NoBooks");
+            }
             return View(model);
         }
 

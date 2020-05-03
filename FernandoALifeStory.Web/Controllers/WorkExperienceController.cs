@@ -22,6 +22,11 @@ namespace FernandoALifeStory.Web.Controllers
         public IActionResult Index()
         {
             var model = workDB.GetAll();
+
+            if (model.Count() == 0)
+            {
+                return View("NoWork");
+            }
             return View(model);
         }
 

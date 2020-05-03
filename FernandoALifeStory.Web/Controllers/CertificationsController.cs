@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FernandoALifeStory.Data.Models.Certifications;
 using FernandoALifeStory.Data.Services.Certifications;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,7 +19,12 @@ namespace FernandoALifeStory.Web.Controllers
 
         public IActionResult Index()
         {
-            var model = certificationDB.GetAll();
+            IEnumerable<Certification> model = certificationDB.GetAll();
+
+            if (model.Count() == 0)
+            {
+                return View("NoCertifications");
+            }
             return View(model);
         }
     }
