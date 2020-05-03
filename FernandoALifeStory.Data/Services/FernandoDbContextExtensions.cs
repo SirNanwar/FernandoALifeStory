@@ -50,9 +50,12 @@ namespace FernandoALifeStory.Data.Services
             Skill designPatternsSkill = SkillGetOrAdd(context, "Design Patterns", SkillType.PatternSkill);
             Skill entityFrameworkCoreSkill = SkillGetOrAdd(context, "Entity Framework Core", SkillType.TechnologySkill);
             Skill ormSkill = SkillGetOrAdd(context, "Object-Relational Mappers", SkillType.TechnologySkill);
+            Skill cleanCodeSkill = SkillGetOrAdd(context, "Clean Code", SkillType.ConceptSkill);
+            Skill unitTestingSkill = SkillGetOrAdd(context, "Unit Testing", SkillType.ConceptSkill);
+            Skill agileMethodologiesSkill = SkillGetOrAdd(context, "Agile Methodologies", SkillType.ConceptSkill);
 
             #region Books
-
+            Book cleanCodeBook = BookGetOrAdd(context, "Clean Code", "Robert C. Martin", "A Handbook of Agile Software Craftsmanship", designPatternsSkill, cleanCodeSkill, unitTestingSkill, agileMethodologiesSkill);
             #endregion
 
             #region Certifications
@@ -70,7 +73,6 @@ namespace FernandoALifeStory.Data.Services
                 /*
                 Add other courses here from the same platform 
                 */
-                context.SaveChanges();
             }
 
             CoursePlatform udemyPlatform = CoursePlatformGetOrAdd(context, "Udemy");
@@ -81,7 +83,6 @@ namespace FernandoALifeStory.Data.Services
                 /*
                 Add other courses here from the same platform 
                 */
-                context.SaveChanges();
             }
             #endregion
 
@@ -92,6 +93,24 @@ namespace FernandoALifeStory.Data.Services
             #region Academics
 
             #endregion
+        }
+
+        private static Book BookGetOrAdd(FernandoDbContext context, string bookName, string bookAuthor, string bookDescription, params Skill[] skills)
+        {
+            Book book = context.Books.FirstOrDefault(x => x.Name.Equals(bookName));
+            if (book is null)
+            {
+                book = new Book()
+                {
+                    Name = bookName,
+                    AuthorName = bookAuthor,
+                    Description = bookDescription,
+                    Skills = skills.ToList()
+                };
+                context.Books.Add(book);
+                context.SaveChanges();
+            }
+            return book;
         }
 
         private static CoursePlatform CoursePlatformGetOrAdd(FernandoDbContext context, string platformName)
@@ -120,6 +139,7 @@ namespace FernandoALifeStory.Data.Services
                     Skills = skills.ToList()
                 };
                 context.Courses.Add(course);
+                context.SaveChanges();
             }
 
             return course;
