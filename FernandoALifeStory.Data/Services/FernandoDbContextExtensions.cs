@@ -43,29 +43,93 @@ namespace FernandoALifeStory.Data.Services
             [.....] All the other being made
              */
 
+            Skill aspDotNetSkill = SkillGetOrAdd(context, "ASP.Net", SkillType.TechnologySkill);
+            Skill mvcSkill = SkillGetOrAdd(context, "MVC", SkillType.DesignPatternSkill);
+            Skill dotNETSkill = SkillGetOrAdd(context, ".NET", SkillType.TechnologySkill);
+            Skill CSharpSkill = SkillGetOrAdd(context, "C#", SkillType.TechnologySkill);
+            Skill designPatternsSkill = SkillGetOrAdd(context, "Design Patterns", SkillType.DesignPatternSkill);
 
-
-            if (!context.CoursePlatforms.Any())
+            CoursePlatform pluralsightPlatform = context.CoursePlatforms.FirstOrDefault(x => x.Name.Equals("Pluralsight"));
+            if (pluralsightPlatform is null)
             {
-                context.CoursePlatforms.AddRange(new CoursePlatform()
+                pluralsightPlatform = new CoursePlatform() { Name = "Pluralsight" };
+                context.CoursePlatforms.Add(pluralsightPlatform);
+                context.SaveChanges();
+            }
+            if(context.CoursePlatforms.Any(x => x.Name.Equals("Pluralsight")))
+            {
+                Course aspDotNetMVCFundamentals = context.Courses.FirstOrDefault(x => x.CourseName.Equals("ASP.NET MVC 5 Fundamentals"));
+                if (aspDotNetMVCFundamentals is null)
                 {
-                    Name = "Pluralsight"
-                });
+                    aspDotNetMVCFundamentals = new Course()
+                    {
+                        CourseName = "ASP.NET MVC 5 Fundamentals",
+                        CoursePlatformId = pluralsightPlatform.Id,
+                        CoursePlatform = pluralsightPlatform,
+                        Description = "Fundamentals for ASP.NET MVC 5",
+                        Skills = new List<Skill>()
+                        {
+                            aspDotNetSkill,
+                            mvcSkill,
+                            dotNETSkill,
+                            CSharpSkill
+                        }
+                    };
+                    context.Courses.Add(aspDotNetMVCFundamentals);
+                }
+                /*
+                Add other courses here from the same platform 
+                */
                 context.SaveChanges();
             }
-            if (!context.Courses.Any())
-            {
-                var platform1 = context.CoursePlatforms.SingleOrDefault(x => x.Id == 1);
 
-                context.Courses.AddRange(new Course() 
-                { 
-                    CourseName = "ASP.NET MVC 5 Fundamentals",
-                    CoursePlatformId = platform1.Id,
-                    CoursePlatform = platform1,
-                    Description = "Fundamentals for ASP.NET MVC 5",
-                });
+            CoursePlatform udemyPlatform = context.CoursePlatforms.FirstOrDefault(x => x.Name.Equals("Udemy"));
+            if (udemyPlatform is null)
+            {
+                udemyPlatform = new CoursePlatform() { Name = "Udemy" };
+                context.CoursePlatforms.Add(udemyPlatform);
                 context.SaveChanges();
             }
+            if (context.CoursePlatforms.Any(x => x.Name.Equals("Udemy")))
+            {
+                Course designPatternsInCSharp = context.Courses.FirstOrDefault(x => x.CourseName.Equals("Design Patterns in C# and .NET"));
+                if (designPatternsInCSharp is null)
+                {
+                    designPatternsInCSharp = new Course()
+                    {
+                        CourseName = "Design Patterns in C# and .NET",
+                        CoursePlatform = udemyPlatform,
+                        CoursePlatformId = udemyPlatform.Id,
+                        Description = "A comprehensive overview of Design Patterns in C# and .NET from a practical perspective.",
+                        Skills = new List<Skill>()
+                        {
+                            dotNETSkill,
+                            CSharpSkill,
+                            designPatternsSkill
+                        }
+                    };
+                    context.Courses.Add(designPatternsInCSharp);
+                }
+                /*
+                Add other courses here from the same platform 
+                */
+                context.SaveChanges();
+            }
+
+        }
+
+        private static Skill SkillGetOrAdd(FernandoDbContext context, string skillName, SkillType skillType)
+        {
+            Skill skill = context.Skills.FirstOrDefault(x => x.Name.Equals(skillName) && 
+                                                                 x.Type == skillType);
+            if (skill is null)
+            {
+                skill = new Skill() { Name = skillName, Type = skillType };
+                context.Skills.Add(skill);
+                context.SaveChangesAsync();
+            }
+
+            return skill;
         }
     }
 }
