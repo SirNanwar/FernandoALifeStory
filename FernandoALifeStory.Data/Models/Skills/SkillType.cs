@@ -4,7 +4,7 @@
     {
         SoftSkill,
         ConceptSkill,
-        DesignPatternSkill,
+        PatternSkill,
         TechnologySkill,
         LanguageSkill
     }

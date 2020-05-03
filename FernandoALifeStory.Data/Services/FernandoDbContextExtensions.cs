@@ -44,78 +44,85 @@ namespace FernandoALifeStory.Data.Services
              */
 
             Skill aspDotNetSkill = SkillGetOrAdd(context, "ASP.Net", SkillType.TechnologySkill);
-            Skill mvcSkill = SkillGetOrAdd(context, "MVC", SkillType.DesignPatternSkill);
+            Skill mvcSkill = SkillGetOrAdd(context, "MVC", SkillType.PatternSkill);
             Skill dotNETSkill = SkillGetOrAdd(context, ".NET", SkillType.TechnologySkill);
             Skill CSharpSkill = SkillGetOrAdd(context, "C#", SkillType.TechnologySkill);
-            Skill designPatternsSkill = SkillGetOrAdd(context, "Design Patterns", SkillType.DesignPatternSkill);
+            Skill designPatternsSkill = SkillGetOrAdd(context, "Design Patterns", SkillType.PatternSkill);
+            Skill entityFrameworkCoreSkill = SkillGetOrAdd(context, "Entity Framework Core", SkillType.TechnologySkill);
+            Skill ormSkill = SkillGetOrAdd(context, "Object-Relational Mappers", SkillType.TechnologySkill);
 
-            CoursePlatform pluralsightPlatform = context.CoursePlatforms.FirstOrDefault(x => x.Name.Equals("Pluralsight"));
-            if (pluralsightPlatform is null)
+            #region Books
+
+            #endregion
+
+            #region Certifications
+
+            #endregion
+
+            #region Courses
+            CoursePlatform pluralsightPlatform = CoursePlatformGetOrAdd(context, "Pluralsight");
+            if(context.CoursePlatforms.Any(x => x.Name.Equals(pluralsightPlatform.Name)))
             {
-                pluralsightPlatform = new CoursePlatform() { Name = "Pluralsight" };
-                context.CoursePlatforms.Add(pluralsightPlatform);
-                context.SaveChanges();
-            }
-            if(context.CoursePlatforms.Any(x => x.Name.Equals("Pluralsight")))
-            {
-                Course aspDotNetMVCFundamentals = context.Courses.FirstOrDefault(x => x.CourseName.Equals("ASP.NET MVC 5 Fundamentals"));
-                if (aspDotNetMVCFundamentals is null)
-                {
-                    aspDotNetMVCFundamentals = new Course()
-                    {
-                        CourseName = "ASP.NET MVC 5 Fundamentals",
-                        CoursePlatformId = pluralsightPlatform.Id,
-                        CoursePlatform = pluralsightPlatform,
-                        Description = "Fundamentals for ASP.NET MVC 5",
-                        Skills = new List<Skill>()
-                        {
-                            aspDotNetSkill,
-                            mvcSkill,
-                            dotNETSkill,
-                            CSharpSkill
-                        }
-                    };
-                    context.Courses.Add(aspDotNetMVCFundamentals);
-                }
+                Course aspDotNetMVCFundamentals = CourseGetOrAdd(context, pluralsightPlatform, "ASP.NET MVC 5 Fundamentals", "Fundamentals to ASP.NET MVC", aspDotNetSkill, mvcSkill, dotNETSkill, CSharpSkill);
+                Course entityFrameworkCore2GettingStarted = CourseGetOrAdd(context, pluralsightPlatform, "Entity Framework Core 2: Getting Started", "First introduction to Entity Framework Core 2, a Microsot O/RM", dotNETSkill, CSharpSkill, entityFrameworkCoreSkill, ormSkill);
+                Course cSharpFundamentals = CourseGetOrAdd(context, pluralsightPlatform, "C# Fundamentals", "Fundamentals to C# programming", dotNETSkill, CSharpSkill);
+
                 /*
                 Add other courses here from the same platform 
                 */
                 context.SaveChanges();
             }
 
-            CoursePlatform udemyPlatform = context.CoursePlatforms.FirstOrDefault(x => x.Name.Equals("Udemy"));
-            if (udemyPlatform is null)
+            CoursePlatform udemyPlatform = CoursePlatformGetOrAdd(context, "Udemy");
+            if (context.CoursePlatforms.Any(x => x.Name.Equals(udemyPlatform.Name)))
             {
-                udemyPlatform = new CoursePlatform() { Name = "Udemy" };
-                context.CoursePlatforms.Add(udemyPlatform);
-                context.SaveChanges();
-            }
-            if (context.CoursePlatforms.Any(x => x.Name.Equals("Udemy")))
-            {
-                Course designPatternsInCSharp = context.Courses.FirstOrDefault(x => x.CourseName.Equals("Design Patterns in C# and .NET"));
-                if (designPatternsInCSharp is null)
-                {
-                    designPatternsInCSharp = new Course()
-                    {
-                        CourseName = "Design Patterns in C# and .NET",
-                        CoursePlatform = udemyPlatform,
-                        CoursePlatformId = udemyPlatform.Id,
-                        Description = "A comprehensive overview of Design Patterns in C# and .NET from a practical perspective.",
-                        Skills = new List<Skill>()
-                        {
-                            dotNETSkill,
-                            CSharpSkill,
-                            designPatternsSkill
-                        }
-                    };
-                    context.Courses.Add(designPatternsInCSharp);
-                }
+                Course designPatternsInCSharp = CourseGetOrAdd(context, udemyPlatform, "Design Patterns in C# and .NET", "A comprehensive overview of Design Patterns in C# and .NET from a practical perspective.", dotNETSkill, CSharpSkill, designPatternsSkill);
+
                 /*
                 Add other courses here from the same platform 
                 */
                 context.SaveChanges();
             }
+            #endregion
 
+            #region Work Experiences
+
+            #endregion
+
+            #region Academics
+
+            #endregion
+        }
+
+        private static CoursePlatform CoursePlatformGetOrAdd(FernandoDbContext context, string platformName)
+        {
+            CoursePlatform platform = context.CoursePlatforms.FirstOrDefault(x => x.Name.Equals(platformName));
+            if (platform is null)
+            {
+                platform = new CoursePlatform() { Name = platformName };
+                context.CoursePlatforms.Add(platform);
+                context.SaveChanges();
+            }
+            return platform;
+        }
+
+        private static Course CourseGetOrAdd(FernandoDbContext context, CoursePlatform coursePlatform, string courseName, string courseDescription, params Skill[] skills)
+        {
+            Course course = context.Courses.FirstOrDefault(x => x.CourseName.Equals(courseName));
+            if (course is null)
+            {
+                course = new Course()
+                {
+                    CourseName = courseName,
+                    CoursePlatformId = coursePlatform.Id,
+                    CoursePlatform = coursePlatform,
+                    Description = courseDescription,
+                    Skills = skills.ToList()
+                };
+                context.Courses.Add(course);
+            }
+
+            return course;
         }
 
         private static Skill SkillGetOrAdd(FernandoDbContext context, string skillName, SkillType skillType)
