@@ -9,8 +9,8 @@ namespace FernandoALifeStory.Data.Models.Academics
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int ECTs { get; set; }
-        public Project Project { get; set; }
+        public double ECTs { get; set; }
+        public List<Project> Project { get; set; }
         public List<Skill> Skills { get; set; }
         public Degree Degree { get; set; }
         public int DegreeId { get; set; }
