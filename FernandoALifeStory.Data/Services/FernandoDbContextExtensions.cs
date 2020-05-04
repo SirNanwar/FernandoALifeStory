@@ -3,10 +3,9 @@ using FernandoALifeStory.Data.Models.Books;
 using FernandoALifeStory.Data.Models.Courses;
 using FernandoALifeStory.Data.Models.Skills;
 using FernandoALifeStory.Data.Models.WorkExperiences;
+using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace FernandoALifeStory.Data.Services
 {
@@ -14,41 +13,11 @@ namespace FernandoALifeStory.Data.Services
     {
         public static void EnsureDatabaseSeeded(this FernandoDbContext context)
         {
-            /*
-            Process for courses, replicate to others:
-                Books and Certifications will not need the nesting
-                Academics will need another level of nesting
-                WorkExperiences will be the same
-
-            Create all the needed skills and use in the creation of all the objects that need skills
-                
-            if Platorfm 1 does not exist
-                create platform 1
-            if platform 1 exists
-                if couse A1 does not exist
-                    create couse A1
-                if course B1 does not exist
-                    create course B1
-                (..repeat for other couses from 1..)
-            
-            if Platorfm 2 does not exist
-                create platform 2
-            if platform 2 exists
-                if couse A2 does not exist
-                    create couse A2
-                if course B2 does not exist
-                    create course B2
-                (..repeat for other couses from 2..)
-            
-            (..Repeat for other platforms..)
-
-            [.....] All the other being made
-             */
-
+            #region Skills
             Skill aspDotNetSkill = SkillGetOrAdd(context, "ASP.Net", SkillType.TechnologySkill);
             Skill mvcSkill = SkillGetOrAdd(context, "MVC", SkillType.PatternSkill);
             Skill dotNETSkill = SkillGetOrAdd(context, ".NET", SkillType.TechnologySkill);
-            Skill CSharpSkill = SkillGetOrAdd(context, "C#", SkillType.TechnologySkill);
+            Skill cSharpSkill = SkillGetOrAdd(context, "C#", SkillType.TechnologySkill);
             Skill designPatternsSkill = SkillGetOrAdd(context, "Design Patterns", SkillType.PatternSkill);
             Skill entityFrameworkCoreSkill = SkillGetOrAdd(context, "Entity Framework Core", SkillType.TechnologySkill);
             Skill ormSkill = SkillGetOrAdd(context, "Object-Relational Mappers", SkillType.TechnologySkill);
@@ -60,11 +29,44 @@ namespace FernandoALifeStory.Data.Services
             Skill voipSkill = SkillGetOrAdd(context, "VoIP Development", SkillType.ConceptSkill);
             Skill cyberSecuritySkill = SkillGetOrAdd(context, "Cyber Security and Encryption", SkillType.ConceptSkill);
             Skill continuousIntegrationSkill = SkillGetOrAdd(context, "Continuous Integration", SkillType.ConceptSkill);
-            Skill CPPSkill = SkillGetOrAdd(context, "C++", SkillType.LanguageSkill);
-            Skill SQLServerSkill = SkillGetOrAdd(context, "SQL Server", SkillType.TechnologySkill);
+            Skill cPPSkill = SkillGetOrAdd(context, "C++", SkillType.LanguageSkill);
+            Skill sQLServerSkill = SkillGetOrAdd(context, "SQL Server", SkillType.TechnologySkill);
             Skill visualStudioSkill = SkillGetOrAdd(context, "Visual Studio", SkillType.TechnologySkill);
             Skill azureDevOpsSkill = SkillGetOrAdd(context, "Azure DevOps", SkillType.TechnologySkill);
             Skill seleniumSkill = SkillGetOrAdd(context, "Selenium WebDriver", SkillType.TechnologySkill);
+            Skill pythonSkill = SkillGetOrAdd(context, "Python", SkillType.LanguageSkill);
+            Skill uMLSkill = SkillGetOrAdd(context, "UML - Unified Modeling Language", SkillType.LanguageSkill);
+            Skill archimateSkill = SkillGetOrAdd(context, "Archimate", SkillType.LanguageSkill);
+            Skill bPMNSkill = SkillGetOrAdd(context, "BPMN - Business Process Model and Notation", SkillType.LanguageSkill);
+            Skill sysMLSkill = SkillGetOrAdd(context, "SysML - Systems Modeling Language", SkillType.LanguageSkill);
+            Skill cloudComputingSkill = SkillGetOrAdd(context, "Cloud Computing", SkillType.ConceptSkill);
+            Skill hTTPProtocolSkill = SkillGetOrAdd(context, "HTTP Protocol", SkillType.ConceptSkill);
+            Skill webServicesSkill = SkillGetOrAdd(context, "Webservices", SkillType.ConceptSkill);
+            Skill cryptographySkill = SkillGetOrAdd(context, "Cryptography", SkillType.ConceptSkill);
+            Skill javaSkill = SkillGetOrAdd(context, "Java", SkillType.LanguageSkill);
+            Skill jUnitSkill = SkillGetOrAdd(context, "JUnit", SkillType.TechnologySkill);
+            Skill jMockitSkill = SkillGetOrAdd(context, "JMockit", SkillType.TechnologySkill);
+            Skill jMeterSkill = SkillGetOrAdd(context, "JMeter", SkillType.TechnologySkill);
+            Skill springBootSkill = SkillGetOrAdd(context, "Spring Boot", SkillType.TechnologySkill);
+            Skill mySQLSkill = SkillGetOrAdd(context, "MySQL", SkillType.TechnologySkill);
+            Skill oOPSkill = SkillGetOrAdd(context, "OOP - Object Oriented Programming", SkillType.ConceptSkill);
+            Skill computerArquitectureSkill = SkillGetOrAdd(context, "Computer Architecture", SkillType.ConceptSkill);
+            Skill memoryManagementSkill = SkillGetOrAdd(context, "Memory Management", SkillType.ConceptSkill);
+            Skill lispSkill = SkillGetOrAdd(context, "Lisp", SkillType.LanguageSkill);
+            Skill searchAlgorithmSkill = SkillGetOrAdd(context, "Search Algorithms", SkillType.ConceptSkill);
+            Skill learningAlgorithmSkill = SkillGetOrAdd(context, "Learning Algorithms", SkillType.ConceptSkill);
+            Skill knowledgeRepresentationAndReasoningSkill = SkillGetOrAdd(context, "Knowledge Representations and Reasoning", SkillType.ConceptSkill);
+            Skill javascriptSkill = SkillGetOrAdd(context, "JavaScript", SkillType.LanguageSkill);
+            Skill sQLSkill = SkillGetOrAdd(context, "SQL", SkillType.LanguageSkill);
+            Skill relationalDatabaseSkill = SkillGetOrAdd(context, "Relational Databases", SkillType.ConceptSkill);
+            Skill hTMLSkill = SkillGetOrAdd(context, "HTML", SkillType.LanguageSkill);
+            Skill cSkill = SkillGetOrAdd(context, "C", SkillType.LanguageSkill);
+            Skill algorithmSkill = SkillGetOrAdd(context, "Algorithms", SkillType.ConceptSkill);
+            Skill bigONotationSkill = SkillGetOrAdd(context, "Big O Notation", SkillType.ConceptSkill);
+            Skill asynchronousProggrammingSkill = SkillGetOrAdd(context, "Asynchronous Programming", SkillType.ConceptSkill);
+            Skill prologSkill = SkillGetOrAdd(context, "Prolog", SkillType.LanguageSkill);
+            Skill assemblySkill = SkillGetOrAdd(context, "Assembly", SkillType.LanguageSkill);
+            #endregion
 
             #region Books
             Book cleanCodeBook = BookGetOrAdd(context, "Clean Code", "Robert C. Martin", "A Handbook of Agile Software Craftsmanship", designPatternsSkill, cleanCodeSkill, unitTestingSkill, agileMethodologiesSkill);
@@ -78,24 +80,24 @@ namespace FernandoALifeStory.Data.Services
             CoursePlatform pluralsightPlatform = CoursePlatformGetOrAdd(context, "Pluralsight");
             if(context.CoursePlatforms.Any(x => x.Name.Equals(pluralsightPlatform.Name)))
             {
-                Course aspDotNetMVCFundamentals = CourseGetOrAdd(context, pluralsightPlatform, "ASP.NET MVC 5 Fundamentals", "Fundamentals to ASP.NET MVC", aspDotNetSkill, mvcSkill, dotNETSkill, CSharpSkill);
-                Course entityFrameworkCore2GettingStarted = CourseGetOrAdd(context, pluralsightPlatform, "Entity Framework Core 2: Getting Started", "First introduction to Entity Framework Core 2, a Microsot O/RM", dotNETSkill, CSharpSkill, entityFrameworkCoreSkill, ormSkill);
-                Course cSharpFundamentals = CourseGetOrAdd(context, pluralsightPlatform, "C# Fundamentals", "Fundamentals to C# programming", dotNETSkill, CSharpSkill);
+                Course aspDotNetMVCFundamentals = CourseGetOrAdd(context, pluralsightPlatform, "ASP.NET MVC 5 Fundamentals", "Fundamentals to ASP.NET MVC", aspDotNetSkill, mvcSkill, dotNETSkill, cSharpSkill);
+                Course entityFrameworkCore2GettingStarted = CourseGetOrAdd(context, pluralsightPlatform, "Entity Framework Core 2: Getting Started", "First introduction to Entity Framework Core 2, a Microsot O/RM", dotNETSkill, cSharpSkill, entityFrameworkCoreSkill, ormSkill);
+                Course cSharpFundamentals = CourseGetOrAdd(context, pluralsightPlatform, "C# Fundamentals", "Fundamentals to C# programming", dotNETSkill, cSharpSkill);
             }
 
             CoursePlatform udemyPlatform = CoursePlatformGetOrAdd(context, "Udemy");
             if (context.CoursePlatforms.Any(x => x.Name.Equals(udemyPlatform.Name)))
             {
-                Course designPatternsInCSharp = CourseGetOrAdd(context, udemyPlatform, "Design Patterns in C# and .NET", "A comprehensive overview of Design Patterns in C# and .NET from a practical perspective.", dotNETSkill, CSharpSkill, designPatternsSkill);
+                Course designPatternsInCSharp = CourseGetOrAdd(context, udemyPlatform, "Design Patterns in C# and .NET", "A comprehensive overview of Design Patterns in C# and .NET from a practical perspective.", dotNETSkill, cSharpSkill, designPatternsSkill);
             }
             #endregion
 
             #region Work Experiences
             Work collabWork = WorkExperienceGetOrAdd(context, "Collab", "Software Engineer", new DateTime(2018, 08, 10), null, 
-                dotNETSkill, CSharpSkill, entityFrameworkCoreSkill, ormSkill, 
+                dotNETSkill, cSharpSkill, entityFrameworkCoreSkill, ormSkill, 
                 unitTestingSkill, agileMethodologiesSkill, automatedTestingSkill, restAPISkill, 
-                voipSkill, cyberSecuritySkill, continuousIntegrationSkill, CPPSkill, 
-                SQLServerSkill, visualStudioSkill, azureDevOpsSkill, seleniumSkill);
+                voipSkill, cyberSecuritySkill, continuousIntegrationSkill, cPPSkill, 
+                sQLServerSkill, visualStudioSkill, azureDevOpsSkill, seleniumSkill);
             if (context.WorkExperiences.Any(x => x.CompanyName.Equals(collabWork.CompanyName)))
             {
                 Achievement microsservice = AchievementGetOrAdd(context, collabWork, "Developed a microservice REST API of asynchronous messaging with Entity Framework Core.");
@@ -109,39 +111,73 @@ namespace FernandoALifeStory.Data.Services
             Degree istCSDegree = DegreeGetOrAdd(context, "Computer Science and Engineering", EducationLevel.Bachelor, "Instituto Superior Técnico", new DateTime(2014, 09, 09), new DateTime(2018, 07, 10), "Lisbon - Portugal");
             if (context.Degrees.Any(x => x.Field.Equals(istCSDegree.Field) && x.Level.Equals(istCSDegree.Level)))
             {
-                Discipline fp = DisciplineGetOrAdd(context, istCSDegree, "Fundamentos da programação", 7.5, /*fp skills*/);
-                Discipline iac = DisciplineGetOrAdd(context, istCSDegree, "Introdução à Arquitectura de Computadores", 7.5, /*iac skills*/);
-                Discipline iaed = DisciplineGetOrAdd(context, istCSDegree, "Introdução aos Algoritmos e Estruturas de Dados", 7.5, /*iaed skills*/);
-                Discipline lp = DisciplineGetOrAdd(context, istCSDegree, "Lógica para Programação", 7.5, /* lp skills*/);
-                Discipline so = DisciplineGetOrAdd(context, istCSDegree, "Sistemas Operativos", 6.0, /**/);
-                Discipline asa = DisciplineGetOrAdd(context, istCSDegree, "Análise e Síntese de Algoritmos", 6.0, /**/);
-                Discipline ipm = DisciplineGetOrAdd(context, istCSDegree, "Interfaces Pessoa Máquina", 7.5, /**/);
-                Discipline bd = DisciplineGetOrAdd(context, istCSDegree, "Bases de Dados", 6.0, /**/);
-                Discipline cg = DisciplineGetOrAdd(context, istCSDegree, "Computação Gráfica", 4.5, /**/);
-                Discipline ia = DisciplineGetOrAdd(context, istCSDegree, "Inteligência Artificial", 7.5, LispSkill, SearchAlgorithmSkill, LearningAlgorithmSkill, KnowledgeRepresentationAndReasoningSkill);
+                Discipline fp = DisciplineGetOrAdd(context, istCSDegree, "Fundamentos da programação", 7.5, pythonSkill);
+                if (context.Disciplines.Any(x => x.Name.Equals(fp.Name)))
+                {
+                    Project cc = ProjectGetOrAdd(context, fp, "Credic Card Generator", "Create a card generator.");
+                    Project game2048 = ProjectGetOrAdd(context, fp, "2048 Game", "Create a version of the game 2048.");
+                }
+                Discipline iac = DisciplineGetOrAdd(context, istCSDegree, "Introdução à Arquitectura de Computadores", 7.5, assemblySkill);
+                if (context.Disciplines.Any(x => x.Name.Equals(iac.Name)))
+                {
+                    Project tennis = ProjectGetOrAdd(context, iac, "RoboTenis", "Develop a game of tennis in assembly language");
+                }
+                Discipline iaed = DisciplineGetOrAdd(context, istCSDegree, "Introdução aos Algoritmos e Estruturas de Dados", 7.5, cSkill, algorithmSkill);
+                Discipline lp = DisciplineGetOrAdd(context, istCSDegree, "Lógica para Programação", 7.5, prologSkill, searchAlgorithmSkill);
+                if (context.Disciplines.Any(x => x.Name.Equals(lp.Name)))
+                {
+                    Project puzzle8 = ProjectGetOrAdd(context, lp, "Puzzle of 8", "Develop a version of puzzle of 8 game, and solving algorithms");
+                }
+                Discipline so = DisciplineGetOrAdd(context, istCSDegree, "Sistemas Operativos", 6.0, cSkill, asynchronousProggrammingSkill);
+                if (context.Disciplines.Any(x => x.Name.Equals(so.Name)))
+                {
+                    Project parshell = ProjectGetOrAdd(context, so, "Par-Shell", "Develop asynchronous proggramming practices on a fibonacci number calculator.");
+                }
+                Discipline asa = DisciplineGetOrAdd(context, istCSDegree, "Análise e Síntese de Algoritmos", 6.0, cSkill, algorithmSkill, bigONotationSkill);
+                if (context.Disciplines.Any(x => x.Name.Equals(asa.Name)))
+                {
+                    Project fundamentalUsers = ProjectGetOrAdd(context, asa, "Fundamental Users", "Develop an algorith to find the fundamental users in a communication network.");
+                    Project coelhoECaracol = ProjectGetOrAdd(context, asa, "Coelho&Caracol", "Develop an algorith to find the most efficient path in a graph transversal");
+                }
+                Discipline ipm = DisciplineGetOrAdd(context, istCSDegree, "Interfaces Pessoa Máquina", 7.5, hTMLSkill, javascriptSkill);
+                if(context.Disciplines.Any(x => x.Name.Equals(ipm.Name)))
+                {
+                    Project barista = ProjectGetOrAdd(context, ipm, "BarISTa", "Develop an application to simulate a smart bar table");
+                }
+                Discipline bd = DisciplineGetOrAdd(context, istCSDegree, "Bases de Dados", 6.0, sQLSkill, relationalDatabaseSkill);
+                if (context.Disciplines.Any(x => x.Name.Equals(bd.Name)))
+                {
+                    Project office = ProjectGetOrAdd(context, bd, "Instant Office", "Create a database model for an application");
+                }
+                Discipline cg = DisciplineGetOrAdd(context, istCSDegree, "Computação Gráfica", 4.5, javascriptSkill);
+                if (context.Disciplines.Any(x => x.Name.Equals(cg.Name)))
+                {
+                    Project invader = ProjectGetOrAdd(context, cg, "Space Invader", "Create a 3d version of the game Space Invaders");
+                }
+                Discipline ia = DisciplineGetOrAdd(context, istCSDegree, "Inteligência Artificial", 7.5, lispSkill, searchAlgorithmSkill, learningAlgorithmSkill, knowledgeRepresentationAndReasoningSkill);
                 if (context.Disciplines.Any(x => x.Name.Equals(ia.Name)))
                 {
                     Project racer = ProjectGetOrAdd(context, ia, "Racetrack", "Create an agent to play Racetrack autonomously");
                 }
-                Discipline oc = DisciplineGetOrAdd(context, istCSDegree, "Organização de Computadores", 6.0, ComputerArquitectureSkill, MemoryManagementSkill);
-                Discipline po = DisciplineGetOrAdd(context, istCSDegree, "Programação com Objectos", 6.0, JavaSkill, designPatternsSkill, OOPSkill);
+                Discipline oc = DisciplineGetOrAdd(context, istCSDegree, "Organização de Computadores", 6.0, computerArquitectureSkill, memoryManagementSkill);
+                Discipline po = DisciplineGetOrAdd(context, istCSDegree, "Programação com Objectos", 6.0, javaSkill, designPatternsSkill, oOPSkill);
                 if (context.Disciplines.Any(x => x.Name.Equals(po.Name)))
                 {
-                    Project interpretor = ProjectGetOrAdd(context, po, "Program Interpretor", "Create a program to manage a set of programs and expressions")
+                    Project interpretor = ProjectGetOrAdd(context, po, "Program Interpretor", "Create a program to manage a set of programs and expressions");
                 }
-                Discipline es = DisciplineGetOrAdd(context, istCSDegree, "Engenharia de Software", 7.5, JavaSkill, JUnitSkill, JMockitSkill, SpringBootSkill, JMeterSkill, MySQLSkill, unitTestingSkill, agileMethodologiesSkill);
+                Discipline es = DisciplineGetOrAdd(context, istCSDegree, "Engenharia de Software", 7.5, javaSkill, jUnitSkill, jMockitSkill, springBootSkill, jMeterSkill, mySQLSkill, unitTestingSkill, agileMethodologiesSkill);
                 if (context.Disciplines.Any(x => x.Name.Equals(es.Name)))
                 {
                     Project adventureBuilder = ProjectGetOrAdd(context, es, "Adventure Builder", "Leisure activity offer system");
                 }
-                Discipline sd = DisciplineGetOrAdd(context, istCSDegree, "Sistemas Distribuídos", 7.5, WebServicesSkill, CryptographySkill);
-                Discipline rc = DisciplineGetOrAdd(context, istCSDegree, "Redes de Computadores", 6.0, CloudComputingSkill, HTTPProtocolSkill);
-                Discipline ams = DisciplineGetOrAdd(context, istCSDegree, "Análise e Modelação de Sistemas", 6.0, UMLSkill, ArchimateSkill, BPMNSkill, SysMLSkill);
+                Discipline sd = DisciplineGetOrAdd(context, istCSDegree, "Sistemas Distribuídos", 7.5, webServicesSkill, cryptographySkill);
+                Discipline rc = DisciplineGetOrAdd(context, istCSDegree, "Redes de Computadores", 6.0, cloudComputingSkill, hTTPProtocolSkill);
+                Discipline ams = DisciplineGetOrAdd(context, istCSDegree, "Análise e Modelação de Sistemas", 6.0, uMLSkill, archimateSkill, bPMNSkill, sysMLSkill);
                 if (context.Disciplines.Any(x => x.Name.Equals(ams.Name)))
                 {
                     Project baik = ProjectGetOrAdd(context, ams, "BAIK", "Bicicle sharing business model");
                 }
-                Discipline comp = DisciplineGetOrAdd(context, istCSDegree, "Compiladores", 6.0, CPPSkill);
+                Discipline comp = DisciplineGetOrAdd(context, istCSDegree, "Compiladores", 6.0, cPPSkill);
                 if (context.Disciplines.Any(x => x.Name.Equals(comp.Name)))
                 {
                     Project gr8 = ProjectGetOrAdd(context, comp, "Gr8 language compilator", "Development of a compilator of a ficticious programming language gr8. Concepts of parsing, lexing and tokenizing.");
