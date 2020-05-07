@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FernandoALifeStory.Data.Services.Skills
 {
-    interface ISkillData
+    public interface ISkillData
     {
         IEnumerable<Skill> GetAll();
         Skill GetById(int id);

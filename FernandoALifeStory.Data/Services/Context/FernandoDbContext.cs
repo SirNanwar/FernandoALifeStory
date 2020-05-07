@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.IO.IsolatedStorage;
 using System.Text;
 
-namespace FernandoALifeStory.Data.Services
+namespace FernandoALifeStory.Data.Services.Context
 {
     public class FernandoDbContext : DbContext
     {

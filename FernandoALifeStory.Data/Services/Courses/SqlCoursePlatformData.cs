@@ -5,6 +5,7 @@ using System.Text;
 using FernandoALifeStory.Data.Models.Courses;
 using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
+using FernandoALifeStory.Data.Services.Context;
 
 namespace FernandoALifeStory.Data.Services.Courses
 {

@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FernandoALifeStory.Data.Migrations
@@ -13,7 +12,7 @@ namespace FernandoALifeStory.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     AuthorName = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true)
@@ -28,7 +27,7 @@ namespace FernandoALifeStory.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CertificationName = table.Column<string>(nullable: true),
                     AdquiredAt = table.Column<DateTime>(nullable: false)
                 },
@@ -42,7 +41,7 @@ namespace FernandoALifeStory.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -55,7 +54,7 @@ namespace FernandoALifeStory.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Field = table.Column<string>(nullable: true),
                     Level = table.Column<int>(nullable: false),
                     Institution = table.Column<string>(nullable: true),
@@ -69,28 +68,15 @@ namespace FernandoALifeStory.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Info",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Info", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "WorkExperiences",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CompanyName = table.Column<string>(nullable: true),
                     Position = table.Column<string>(nullable: true),
                     StartDate = table.Column<DateTime>(nullable: false),
-                    EndDate = table.Column<DateTime>(nullable: false)
+                    EndDate = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -102,7 +88,7 @@ namespace FernandoALifeStory.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CourseName = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     CoursePlatformId = table.Column<int>(nullable: false)
@@ -119,43 +105,22 @@ namespace FernandoALifeStory.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ContactInfos",
+                name: "Disciplines",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ContactType = table.Column<int>(nullable: false),
-                    Contact = table.Column<string>(nullable: true),
-                    InfoId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    ECTs = table.Column<double>(nullable: false),
+                    DegreeId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ContactInfos", x => x.Id);
+                    table.PrimaryKey("PK_Disciplines", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ContactInfos_Info_InfoId",
-                        column: x => x.InfoId,
-                        principalTable: "Info",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "SocialMediaInfos",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    SocialMediaType = table.Column<int>(nullable: false),
-                    SocialMediaUrl = table.Column<string>(nullable: true),
-                    InfoId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SocialMediaInfos", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_SocialMediaInfos_Info_InfoId",
-                        column: x => x.InfoId,
-                        principalTable: "Info",
+                        name: "FK_Disciplines_Degrees_DegreeId",
+                        column: x => x.DegreeId,
+                        principalTable: "Degrees",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -165,7 +130,7 @@ namespace FernandoALifeStory.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Description = table.Column<string>(nullable: true),
                     WorkId = table.Column<int>(nullable: false)
                 },
@@ -181,39 +146,11 @@ namespace FernandoALifeStory.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Disciplines",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true),
-                    ECTs = table.Column<int>(nullable: false),
-                    CourseId = table.Column<int>(nullable: false),
-                    DegreeId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Disciplines", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Disciplines_Courses_CourseId",
-                        column: x => x.CourseId,
-                        principalTable: "Courses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Disciplines_Degrees_DegreeId",
-                        column: x => x.DegreeId,
-                        principalTable: "Degrees",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Projects",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     DisciplineId = table.Column<int>(nullable: false)
@@ -230,11 +167,11 @@ namespace FernandoALifeStory.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Skill",
+                name: "Skills",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     Proficiency = table.Column<int>(nullable: false),
                     Type = table.Column<int>(nullable: false),
@@ -246,33 +183,33 @@ namespace FernandoALifeStory.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Skill", x => x.Id);
+                    table.PrimaryKey("PK_Skills", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Skill_Books_BookId",
+                        name: "FK_Skills_Books_BookId",
                         column: x => x.BookId,
                         principalTable: "Books",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Skill_Certifications_CertificationId",
+                        name: "FK_Skills_Certifications_CertificationId",
                         column: x => x.CertificationId,
                         principalTable: "Certifications",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Skill_Courses_CourseId",
+                        name: "FK_Skills_Courses_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Courses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Skill_Disciplines_DisciplineId",
+                        name: "FK_Skills_Disciplines_DisciplineId",
                         column: x => x.DisciplineId,
                         principalTable: "Disciplines",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Skill_WorkExperiences_WorkId",
+                        name: "FK_Skills_WorkExperiences_WorkId",
                         column: x => x.WorkId,
                         principalTable: "WorkExperiences",
                         principalColumn: "Id",
@@ -285,19 +222,9 @@ namespace FernandoALifeStory.Data.Migrations
                 column: "WorkId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ContactInfos_InfoId",
-                table: "ContactInfos",
-                column: "InfoId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Courses_CoursePlatformId",
                 table: "Courses",
                 column: "CoursePlatformId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Disciplines_CourseId",
-                table: "Disciplines",
-                column: "CourseId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Disciplines_DegreeId",
@@ -307,38 +234,32 @@ namespace FernandoALifeStory.Data.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Projects_DisciplineId",
                 table: "Projects",
-                column: "DisciplineId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Skill_BookId",
-                table: "Skill",
-                column: "BookId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Skill_CertificationId",
-                table: "Skill",
-                column: "CertificationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Skill_CourseId",
-                table: "Skill",
-                column: "CourseId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Skill_DisciplineId",
-                table: "Skill",
                 column: "DisciplineId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Skill_WorkId",
-                table: "Skill",
-                column: "WorkId");
+                name: "IX_Skills_BookId",
+                table: "Skills",
+                column: "BookId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SocialMediaInfos_InfoId",
-                table: "SocialMediaInfos",
-                column: "InfoId");
+                name: "IX_Skills_CertificationId",
+                table: "Skills",
+                column: "CertificationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Skills_CourseId",
+                table: "Skills",
+                column: "CourseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Skills_DisciplineId",
+                table: "Skills",
+                column: "DisciplineId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Skills_WorkId",
+                table: "Skills",
+                column: "WorkId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -347,16 +268,10 @@ namespace FernandoALifeStory.Data.Migrations
                 name: "Achievements");
 
             migrationBuilder.DropTable(
-                name: "ContactInfos");
-
-            migrationBuilder.DropTable(
                 name: "Projects");
 
             migrationBuilder.DropTable(
-                name: "Skill");
-
-            migrationBuilder.DropTable(
-                name: "SocialMediaInfos");
+                name: "Skills");
 
             migrationBuilder.DropTable(
                 name: "Books");
@@ -365,22 +280,19 @@ namespace FernandoALifeStory.Data.Migrations
                 name: "Certifications");
 
             migrationBuilder.DropTable(
+                name: "Courses");
+
+            migrationBuilder.DropTable(
                 name: "Disciplines");
 
             migrationBuilder.DropTable(
                 name: "WorkExperiences");
 
             migrationBuilder.DropTable(
-                name: "Info");
-
-            migrationBuilder.DropTable(
-                name: "Courses");
+                name: "CoursePlatforms");
 
             migrationBuilder.DropTable(
                 name: "Degrees");
-
-            migrationBuilder.DropTable(
-                name: "CoursePlatorms");
         }
     }
 }

@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FernandoALifeStory.Data.Services;
 using FernandoALifeStory.Data.Services.Academics;
 using FernandoALifeStory.Data.Services.Books;
 using FernandoALifeStory.Data.Services.Certifications;
+using FernandoALifeStory.Data.Services.Context;
+using FernandoALifeStory.Data.Services.Context.DbContextExtensions;
 using FernandoALifeStory.Data.Services.Courses;
+using FernandoALifeStory.Data.Services.Skills;
 using FernandoALifeStory.Data.Services.WorkExperiences;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -42,6 +44,8 @@ namespace FernandoALifeStory.Web
                 option.UseSqlServer(Configuration.GetConnectionString("FernandoDbContext"));
             });
             
+            services.AddTransient<ISkillData, SqlSkillData>();
+
             services.AddTransient<ICoursePlatformData, SqlCoursePlatformData>();
             services.AddTransient<ICourseData, SqlCourseData>();
 

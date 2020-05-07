@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using System;
 using System.Linq;
 
-namespace FernandoALifeStory.Data.Services
+namespace FernandoALifeStory.Data.Services.Context.DbContextExtensions
 {
     public static class FernandoDbContextExtensions
     {
@@ -69,7 +69,7 @@ namespace FernandoALifeStory.Data.Services
             #endregion
 
             #region Books
-            Book cleanCodeBook = BookGetOrAdd(context, "Clean Code", "Robert C. Martin", "A Handbook of Agile Software Craftsmanship", designPatternsSkill, cleanCodeSkill, unitTestingSkill, agileMethodologiesSkill);
+            SeedBooks(context, designPatternsSkill, cleanCodeSkill, unitTestingSkill, agileMethodologiesSkill);
             #endregion
 
             #region Certifications
@@ -77,37 +77,20 @@ namespace FernandoALifeStory.Data.Services
             #endregion
 
             #region Courses
-            CoursePlatform pluralsightPlatform = CoursePlatformGetOrAdd(context, "Pluralsight");
-            if(context.CoursePlatforms.Any(x => x.Name.Equals(pluralsightPlatform.Name)))
-            {
-                Course aspDotNetMVCFundamentals = CourseGetOrAdd(context, pluralsightPlatform, "ASP.NET MVC 5 Fundamentals", "Fundamentals to ASP.NET MVC", aspDotNetSkill, mvcSkill, dotNETSkill, cSharpSkill);
-                Course entityFrameworkCore2GettingStarted = CourseGetOrAdd(context, pluralsightPlatform, "Entity Framework Core 2: Getting Started", "First introduction to Entity Framework Core 2, a Microsot O/RM", dotNETSkill, cSharpSkill, entityFrameworkCoreSkill, ormSkill);
-                Course cSharpFundamentals = CourseGetOrAdd(context, pluralsightPlatform, "C# Fundamentals", "Fundamentals to C# programming", dotNETSkill, cSharpSkill);
-            }
-
-            CoursePlatform udemyPlatform = CoursePlatformGetOrAdd(context, "Udemy");
-            if (context.CoursePlatforms.Any(x => x.Name.Equals(udemyPlatform.Name)))
-            {
-                Course designPatternsInCSharp = CourseGetOrAdd(context, udemyPlatform, "Design Patterns in C# and .NET", "A comprehensive overview of Design Patterns in C# and .NET from a practical perspective.", dotNETSkill, cSharpSkill, designPatternsSkill);
-            }
+            SeedCourses(context, aspDotNetSkill, mvcSkill, dotNETSkill, cSharpSkill, designPatternsSkill, entityFrameworkCoreSkill, ormSkill);
             #endregion
 
             #region Work Experiences
-            Work collabWork = WorkExperienceGetOrAdd(context, "Collab", "Software Engineer", new DateTime(2018, 08, 10), null, 
-                dotNETSkill, cSharpSkill, entityFrameworkCoreSkill, ormSkill, 
-                unitTestingSkill, agileMethodologiesSkill, automatedTestingSkill, restAPISkill, 
-                voipSkill, cyberSecuritySkill, continuousIntegrationSkill, cPPSkill, 
-                sQLServerSkill, visualStudioSkill, azureDevOpsSkill, seleniumSkill);
-            if (context.WorkExperiences.Any(x => x.CompanyName.Equals(collabWork.CompanyName)))
-            {
-                Achievement microsservice = AchievementGetOrAdd(context, collabWork, "Developed a microservice REST API of asynchronous messaging with Entity Framework Core.");
-                Achievement encryption = AchievementGetOrAdd(context, collabWork, "Implemented real time encryption of RTP video calls. ");
-                Achievement autoTest = AchievementGetOrAdd(context, collabWork, "Guaranteed product continuous integration, developing integration and functional automated testing.");
-                Achievement sipDev = AchievementGetOrAdd(context, collabWork, "Worked on developing SIP solutions for VoIP calls. ");
-            }
+            SeedWorkExperiences(context, dotNETSkill, cSharpSkill, entityFrameworkCoreSkill, ormSkill, unitTestingSkill, agileMethodologiesSkill, automatedTestingSkill, restAPISkill, voipSkill, cyberSecuritySkill, continuousIntegrationSkill, cPPSkill, sQLServerSkill, visualStudioSkill, azureDevOpsSkill, seleniumSkill);
             #endregion
 
             #region Academics
+            SeedAcademics(context, designPatternsSkill, unitTestingSkill, agileMethodologiesSkill, cPPSkill, pythonSkill, uMLSkill, archimateSkill, bPMNSkill, sysMLSkill, cloudComputingSkill, hTTPProtocolSkill, webServicesSkill, cryptographySkill, javaSkill, jUnitSkill, jMockitSkill, jMeterSkill, springBootSkill, mySQLSkill, oOPSkill, computerArquitectureSkill, memoryManagementSkill, lispSkill, searchAlgorithmSkill, learningAlgorithmSkill, knowledgeRepresentationAndReasoningSkill, javascriptSkill, sQLSkill, relationalDatabaseSkill, hTMLSkill, cSkill, algorithmSkill, bigONotationSkill, asynchronousProggrammingSkill, prologSkill, assemblySkill);
+            #endregion
+        }
+
+        private static void SeedAcademics(FernandoDbContext context, Skill designPatternsSkill, Skill unitTestingSkill, Skill agileMethodologiesSkill, Skill cPPSkill, Skill pythonSkill, Skill uMLSkill, Skill archimateSkill, Skill bPMNSkill, Skill sysMLSkill, Skill cloudComputingSkill, Skill hTTPProtocolSkill, Skill webServicesSkill, Skill cryptographySkill, Skill javaSkill, Skill jUnitSkill, Skill jMockitSkill, Skill jMeterSkill, Skill springBootSkill, Skill mySQLSkill, Skill oOPSkill, Skill computerArquitectureSkill, Skill memoryManagementSkill, Skill lispSkill, Skill searchAlgorithmSkill, Skill learningAlgorithmSkill, Skill knowledgeRepresentationAndReasoningSkill, Skill javascriptSkill, Skill sQLSkill, Skill relationalDatabaseSkill, Skill hTMLSkill, Skill cSkill, Skill algorithmSkill, Skill bigONotationSkill, Skill asynchronousProggrammingSkill, Skill prologSkill, Skill assemblySkill)
+        {
             Degree istCSDegree = DegreeGetOrAdd(context, "Computer Science and Engineering", EducationLevel.Bachelor, "Instituto Superior Técnico", new DateTime(2014, 09, 09), new DateTime(2018, 07, 10), "Lisbon - Portugal");
             if (context.Degrees.Any(x => x.Field.Equals(istCSDegree.Field) && x.Level.Equals(istCSDegree.Level)))
             {
@@ -140,7 +123,7 @@ namespace FernandoALifeStory.Data.Services
                     Project coelhoECaracol = ProjectGetOrAdd(context, asa, "Coelho&Caracol", "Develop an algorith to find the most efficient path in a graph transversal");
                 }
                 Discipline ipm = DisciplineGetOrAdd(context, istCSDegree, "Interfaces Pessoa Máquina", 7.5, hTMLSkill, javascriptSkill);
-                if(context.Disciplines.Any(x => x.Name.Equals(ipm.Name)))
+                if (context.Disciplines.Any(x => x.Name.Equals(ipm.Name)))
                 {
                     Project barista = ProjectGetOrAdd(context, ipm, "BarISTa", "Develop an application to simulate a smart bar table");
                 }
@@ -197,7 +180,44 @@ namespace FernandoALifeStory.Data.Services
                 Discipline ges = DisciplineGetOrAdd(context, istCSDegree, "Gestão", 4.5);
                 Discipline cs = DisciplineGetOrAdd(context, istCSDegree, "Computação e Sociedade", 3.0);
             }
-            #endregion
+        }
+
+        private static void SeedWorkExperiences(FernandoDbContext context, Skill dotNETSkill, Skill cSharpSkill, Skill entityFrameworkCoreSkill, Skill ormSkill, Skill unitTestingSkill, Skill agileMethodologiesSkill, Skill automatedTestingSkill, Skill restAPISkill, Skill voipSkill, Skill cyberSecuritySkill, Skill continuousIntegrationSkill, Skill cPPSkill, Skill sQLServerSkill, Skill visualStudioSkill, Skill azureDevOpsSkill, Skill seleniumSkill)
+        {
+            Work collabWork = WorkExperienceGetOrAdd(context, "Collab", "Software Engineer", new DateTime(2018, 08, 10), null,
+                dotNETSkill, cSharpSkill, entityFrameworkCoreSkill, ormSkill,
+                unitTestingSkill, agileMethodologiesSkill, automatedTestingSkill, restAPISkill,
+                voipSkill, cyberSecuritySkill, continuousIntegrationSkill, cPPSkill,
+                sQLServerSkill, visualStudioSkill, azureDevOpsSkill, seleniumSkill);
+            if (context.WorkExperiences.Any(x => x.CompanyName.Equals(collabWork.CompanyName)))
+            {
+                Achievement microsservice = AchievementGetOrAdd(context, collabWork, "Developed a microservice REST API of asynchronous messaging with Entity Framework Core.");
+                Achievement encryption = AchievementGetOrAdd(context, collabWork, "Implemented real time encryption of RTP video calls. ");
+                Achievement autoTest = AchievementGetOrAdd(context, collabWork, "Guaranteed product continuous integration, developing integration and functional automated testing.");
+                Achievement sipDev = AchievementGetOrAdd(context, collabWork, "Worked on developing SIP solutions for VoIP calls. ");
+            }
+        }
+
+        private static void SeedBooks(FernandoDbContext context, Skill designPatternsSkill, Skill cleanCodeSkill, Skill unitTestingSkill, Skill agileMethodologiesSkill)
+        {
+            Book cleanCodeBook = BookGetOrAdd(context, "Clean Code", "Robert C. Martin", "A Handbook of Agile Software Craftsmanship", designPatternsSkill, cleanCodeSkill, unitTestingSkill, agileMethodologiesSkill);
+        }
+
+        private static void SeedCourses(FernandoDbContext context, Skill aspDotNetSkill, Skill mvcSkill, Skill dotNETSkill, Skill cSharpSkill, Skill designPatternsSkill, Skill entityFrameworkCoreSkill, Skill ormSkill)
+        {
+            CoursePlatform pluralsightPlatform = CoursePlatformGetOrAdd(context, "Pluralsight");
+            if (context.CoursePlatforms.Any(x => x.Name.Equals(pluralsightPlatform.Name)))
+            {
+                Course aspDotNetMVCFundamentals = CourseGetOrAdd(context, pluralsightPlatform, "ASP.NET MVC 5 Fundamentals", "Fundamentals to ASP.NET MVC", aspDotNetSkill, mvcSkill, dotNETSkill, cSharpSkill);
+                Course entityFrameworkCore2GettingStarted = CourseGetOrAdd(context, pluralsightPlatform, "Entity Framework Core 2: Getting Started", "First introduction to Entity Framework Core 2, a Microsot O/RM", dotNETSkill, cSharpSkill, entityFrameworkCoreSkill, ormSkill);
+                Course cSharpFundamentals = CourseGetOrAdd(context, pluralsightPlatform, "C# Fundamentals", "Fundamentals to C# programming", dotNETSkill, cSharpSkill);
+            }
+
+            CoursePlatform udemyPlatform = CoursePlatformGetOrAdd(context, "Udemy");
+            if (context.CoursePlatforms.Any(x => x.Name.Equals(udemyPlatform.Name)))
+            {
+                Course designPatternsInCSharp = CourseGetOrAdd(context, udemyPlatform, "Design Patterns in C# and .NET", "A comprehensive overview of Design Patterns in C# and .NET from a practical perspective.", dotNETSkill, cSharpSkill, designPatternsSkill);
+            }
         }
 
         private static Project ProjectGetOrAdd(FernandoDbContext context, Discipline discipline, string name, string description)
@@ -280,7 +300,7 @@ namespace FernandoALifeStory.Data.Services
 
                 work.Achievements.Add(achievement);
                 context.WorkExperiences.Update(work);
-                
+
                 context.Achievements.Add(achievement);
                 context.SaveChanges();
             }
@@ -361,7 +381,7 @@ namespace FernandoALifeStory.Data.Services
 
         private static Skill SkillGetOrAdd(FernandoDbContext context, string skillName, SkillType skillType)
         {
-            Skill skill = context.Skills.FirstOrDefault(x => x.Name.Equals(skillName) && 
+            Skill skill = context.Skills.FirstOrDefault(x => x.Name.Equals(skillName) &&
                                                                  x.Type == skillType);
             if (skill is null)
             {
