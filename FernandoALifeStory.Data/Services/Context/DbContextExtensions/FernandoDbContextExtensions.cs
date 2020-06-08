@@ -67,6 +67,8 @@ namespace FernandoALifeStory.Data.Services.Context.DbContextExtensions
             Skill asynchronousProggrammingSkill = SkillGetOrAdd(context, "Asynchronous Programming", SkillType.ConceptSkill);
             Skill prologSkill = SkillGetOrAdd(context, "Prolog", SkillType.LanguageSkill);
             Skill assemblySkill = SkillGetOrAdd(context, "Assembly", SkillType.LanguageSkill);
+            Skill automationSkill  = SkillGetOrAdd(context, "Automation", SkillType.ConceptSkill);
+            Skill webscrapingSkill = SkillGetOrAdd(context, "Web Scraping", SkillType.ConceptSkill);
             #endregion
 
             #region Books
@@ -78,7 +80,7 @@ namespace FernandoALifeStory.Data.Services.Context.DbContextExtensions
             #endregion
 
             #region Courses
-            SeedCourses(context, aspDotNetSkill, mvcSkill, dotNETSkill, cSharpSkill, designPatternsSkill, entityFrameworkCoreSkill, ormSkill);
+            SeedCourses(context, aspDotNetSkill, mvcSkill, dotNETSkill, cSharpSkill, designPatternsSkill, entityFrameworkCoreSkill, ormSkill, pythonSkill, webscrapingSkill, automationSkill);
             #endregion
 
             #region Work Experiences
@@ -204,7 +206,7 @@ namespace FernandoALifeStory.Data.Services.Context.DbContextExtensions
             Book cleanCodeBook = BookGetOrAdd(context, "Clean Code", "Robert C. Martin", "A Handbook of Agile Software Craftsmanship", designPatternsSkill, cleanCodeSkill, unitTestingSkill, agileMethodologiesSkill);
         }
 
-        private static void SeedCourses(FernandoDbContext context, Skill aspDotNetSkill, Skill mvcSkill, Skill dotNETSkill, Skill cSharpSkill, Skill designPatternsSkill, Skill entityFrameworkCoreSkill, Skill ormSkill)
+        private static void SeedCourses(FernandoDbContext context, Skill aspDotNetSkill, Skill mvcSkill, Skill dotNETSkill, Skill cSharpSkill, Skill designPatternsSkill, Skill entityFrameworkCoreSkill, Skill ormSkill, Skill pythonSkill, Skill webscrapingSkill, Skill automationSkill)
         {
             CoursePlatform pluralsightPlatform = CoursePlatformGetOrAdd(context, "Pluralsight");
             if (context.CoursePlatforms.Any(x => x.Name.Equals(pluralsightPlatform.Name)))
@@ -218,6 +220,7 @@ namespace FernandoALifeStory.Data.Services.Context.DbContextExtensions
             if (context.CoursePlatforms.Any(x => x.Name.Equals(udemyPlatform.Name)))
             {
                 Course designPatternsInCSharp = CourseGetOrAdd(context, udemyPlatform, "Design Patterns in C# and .NET", "A comprehensive overview of Design Patterns in C# and .NET from a practical perspective.", dotNETSkill, cSharpSkill, designPatternsSkill);
+                Course automateTheBoringStuffWithPython = CourseGetOrAdd(context, udemyPlatform, "Automate the Boring Stuff with Python Programming", "If you're an office worker, student, administrator, or just want to become more productive with your computer, programming will allow you write code that can automate tedious tasks. This course follows the popular (and free!) book, Automate the Boring Stuff with Python.", pythonSkill, webscrapingSkill, automationSkill);
             }
         }
 
