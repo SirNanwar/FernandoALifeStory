@@ -9,5 +9,6 @@ namespace FernandoALifeStory.Data.Services.Skills
     {
         IEnumerable<Skill> GetAll();
         Skill GetById(int id);
+        IEnumerable<Skill> GetSkillsByMultipleIds(int[] ids);
     }
 }

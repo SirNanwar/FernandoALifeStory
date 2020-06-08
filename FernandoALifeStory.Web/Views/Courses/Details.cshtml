@@ -26,7 +26,7 @@
             @Html.DisplayNameFor(model => model.Skills)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Skills)
+            @Html.ActionLink("Skills", "Skills", new { id = Model.Id })
         </dd>
     </dl>
 </div>

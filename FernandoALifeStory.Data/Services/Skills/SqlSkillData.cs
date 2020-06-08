@@ -26,5 +26,10 @@ namespace FernandoALifeStory.Data.Services.Skills
         {
             return skills.FirstOrDefault(x => x.Id == id);
         }
+
+        public IEnumerable<Skill> GetSkillsByMultipleIds(int[] ids)
+        {
+            return skills.Where(x => ids.Contains(x.Id)).OrderBy(x => x.Type);
+        }
     }
 }
