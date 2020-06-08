@@ -5,6 +5,7 @@ using FernandoALifeStory.Data.Models.Skills;
 using FernandoALifeStory.Data.Models.WorkExperiences;
 using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace FernandoALifeStory.Data.Services.Context.DbContextExtensions
@@ -262,6 +263,7 @@ namespace FernandoALifeStory.Data.Services.Context.DbContextExtensions
                 context.Disciplines.Add(discipline);
                 context.SaveChanges();
             }
+            discipline.Project ??= new List<Project>();
             return discipline;
         }
 
@@ -283,6 +285,7 @@ namespace FernandoALifeStory.Data.Services.Context.DbContextExtensions
                 context.Degrees.Add(degree);
                 context.SaveChanges();
             }
+            degree.Curriculum ??= new List<Discipline>();
             return degree;
         }
 
@@ -323,6 +326,7 @@ namespace FernandoALifeStory.Data.Services.Context.DbContextExtensions
                 context.WorkExperiences.Add(work);
                 context.SaveChanges();
             }
+            work.Achievements ??= new List<Achievement>();
             return work;
         }
 
@@ -353,6 +357,7 @@ namespace FernandoALifeStory.Data.Services.Context.DbContextExtensions
                 context.CoursePlatforms.Add(platform);
                 context.SaveChanges();
             }
+            platform.Courses ??= new List<Course>();
             return platform;
         }
 
@@ -387,7 +392,7 @@ namespace FernandoALifeStory.Data.Services.Context.DbContextExtensions
             {
                 skill = new Skill() { Name = skillName, Type = skillType };
                 context.Skills.Add(skill);
-                context.SaveChangesAsync();
+                context.SaveChanges();
             }
 
             return skill;
