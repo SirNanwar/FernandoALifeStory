@@ -17,64 +17,11 @@ namespace FernandoALifeStory.Data.Context.DbContextExtensions
         public static void EnsureDatabaseSeeded(this FernandoDbContext context)
         {
             #region Skills
-            Skill cSharpSkill = SkillGetOrAdd(context, "C#", SkillType.LanguageSkill);
-            Skill cPPSkill = SkillGetOrAdd(context, "C++", SkillType.LanguageSkill);
-            Skill pythonSkill = SkillGetOrAdd(context, "Python", SkillType.LanguageSkill);
-            Skill uMLSkill = SkillGetOrAdd(context, "UML - Unified Modeling Language", SkillType.LanguageSkill);
-            Skill archimateSkill = SkillGetOrAdd(context, "Archimate", SkillType.LanguageSkill);
-            Skill bPMNSkill = SkillGetOrAdd(context, "BPMN - Business Process Model and Notation", SkillType.LanguageSkill);
-            Skill sysMLSkill = SkillGetOrAdd(context, "SysML - Systems Modeling Language", SkillType.LanguageSkill);
-            Skill javaSkill = SkillGetOrAdd(context, "Java", SkillType.LanguageSkill);
-            Skill lispSkill = SkillGetOrAdd(context, "Lisp", SkillType.LanguageSkill);
-            Skill javascriptSkill = SkillGetOrAdd(context, "JavaScript", SkillType.LanguageSkill);
-            Skill sQLSkill = SkillGetOrAdd(context, "SQL", SkillType.LanguageSkill);
-            Skill hTMLSkill = SkillGetOrAdd(context, "HTML", SkillType.LanguageSkill);
-            Skill cSkill = SkillGetOrAdd(context, "C", SkillType.LanguageSkill);
-            Skill prologSkill = SkillGetOrAdd(context, "Prolog", SkillType.LanguageSkill);
-            Skill assemblySkill = SkillGetOrAdd(context, "Assembly", SkillType.LanguageSkill);
-            Skill aspDotNetSkill = SkillGetOrAdd(context, "ASP.Net", SkillType.TechnologySkill);
-            Skill dotNETSkill = SkillGetOrAdd(context, ".NET", SkillType.TechnologySkill);
-            Skill entityFrameworkCoreSkill = SkillGetOrAdd(context, "Entity Framework Core", SkillType.TechnologySkill);
-            Skill ormSkill = SkillGetOrAdd(context, "Object-Relational Mappers", SkillType.TechnologySkill);
-            Skill sQLServerSkill = SkillGetOrAdd(context, "SQL Server", SkillType.TechnologySkill);
-            Skill visualStudioSkill = SkillGetOrAdd(context, "Visual Studio", SkillType.TechnologySkill);
-            Skill azureDevOpsSkill = SkillGetOrAdd(context, "Azure DevOps", SkillType.TechnologySkill);
-            Skill seleniumSkill = SkillGetOrAdd(context, "Selenium WebDriver", SkillType.TechnologySkill);
-            Skill jUnitSkill = SkillGetOrAdd(context, "JUnit", SkillType.TechnologySkill);
-            Skill jMockitSkill = SkillGetOrAdd(context, "JMockit", SkillType.TechnologySkill);
-            Skill jMeterSkill = SkillGetOrAdd(context, "JMeter", SkillType.TechnologySkill);
-            Skill springBootSkill = SkillGetOrAdd(context, "Spring Boot", SkillType.TechnologySkill);
-            Skill mySQLSkill = SkillGetOrAdd(context, "MySQL", SkillType.TechnologySkill);
-            Skill mvcSkill = SkillGetOrAdd(context, "MVC", SkillType.PatternSkill);
-            Skill designPatternsSkill = SkillGetOrAdd(context, "Design Patterns", SkillType.PatternSkill);
-            Skill restAPISkill = SkillGetOrAdd(context, "REST API", SkillType.PatternSkill);
-            Skill cleanCodeSkill = SkillGetOrAdd(context, "Clean Code", SkillType.ConceptSkill);
-            Skill unitTestingSkill = SkillGetOrAdd(context, "Unit Testing", SkillType.ConceptSkill);
-            Skill agileMethodologiesSkill = SkillGetOrAdd(context, "Agile Methodologies", SkillType.ConceptSkill);
-            Skill automatedTestingSkill = SkillGetOrAdd(context, "Automated Testing", SkillType.ConceptSkill);
-            Skill voipSkill = SkillGetOrAdd(context, "VoIP Development", SkillType.ConceptSkill);
-            Skill cyberSecuritySkill = SkillGetOrAdd(context, "Cyber Security and Encryption", SkillType.ConceptSkill);
-            Skill continuousIntegrationSkill = SkillGetOrAdd(context, "Continuous Integration", SkillType.ConceptSkill);
-            Skill cloudComputingSkill = SkillGetOrAdd(context, "Cloud Computing", SkillType.ConceptSkill);
-            Skill hTTPProtocolSkill = SkillGetOrAdd(context, "HTTP Protocol", SkillType.ConceptSkill);
-            Skill webServicesSkill = SkillGetOrAdd(context, "Webservices", SkillType.ConceptSkill);
-            Skill cryptographySkill = SkillGetOrAdd(context, "Cryptography", SkillType.ConceptSkill);
-            Skill oOPSkill = SkillGetOrAdd(context, "OOP - Object Oriented Programming", SkillType.ConceptSkill);
-            Skill computerArquitectureSkill = SkillGetOrAdd(context, "Computer Architecture", SkillType.ConceptSkill);
-            Skill memoryManagementSkill = SkillGetOrAdd(context, "Memory Management", SkillType.ConceptSkill);
-            Skill searchAlgorithmSkill = SkillGetOrAdd(context, "Search Algorithms", SkillType.ConceptSkill);
-            Skill learningAlgorithmSkill = SkillGetOrAdd(context, "Learning Algorithms", SkillType.ConceptSkill);
-            Skill knowledgeRepresentationAndReasoningSkill = SkillGetOrAdd(context, "Knowledge Representations and Reasoning", SkillType.ConceptSkill);
-            Skill relationalDatabaseSkill = SkillGetOrAdd(context, "Relational Databases", SkillType.ConceptSkill);
-            Skill algorithmSkill = SkillGetOrAdd(context, "Algorithms", SkillType.ConceptSkill);
-            Skill bigONotationSkill = SkillGetOrAdd(context, "Big O Notation", SkillType.ConceptSkill);
-            Skill asynchronousProggrammingSkill = SkillGetOrAdd(context, "Asynchronous Programming", SkillType.ConceptSkill);
-            Skill automationSkill = SkillGetOrAdd(context, "Automation", SkillType.ConceptSkill);
-            Skill webscrapingSkill = SkillGetOrAdd(context, "Web Scraping", SkillType.ConceptSkill);
+            SkillContextExtension SkillsContext = new SkillContextExtension(context);
             #endregion
 
             #region Books
-            SeedBooks(context, designPatternsSkill, cleanCodeSkill, unitTestingSkill, agileMethodologiesSkill);
+            SeedBooks(context, SkillsContext.Skills);
             #endregion
 
             #region Certifications
@@ -203,9 +150,16 @@ namespace FernandoALifeStory.Data.Context.DbContextExtensions
             }
         }
 
-        private static void SeedBooks(FernandoDbContext context, Skill designPatternsSkill, Skill cleanCodeSkill, Skill unitTestingSkill, Skill agileMethodologiesSkill)
+        private static void SeedBooks(FernandoDbContext context, Dictionary<string, Skill> skillDic)
         {
-            Book cleanCodeBook = BookGetOrAdd(context, "Clean Code", "Robert C. Martin", "A Handbook of Agile Software Craftsmanship", designPatternsSkill, cleanCodeSkill, unitTestingSkill, agileMethodologiesSkill);
+            Book cleanCodeBook = BookGetOrAdd(context, 
+                                              "Clean Code", 
+                                              "Robert C. Martin", 
+                                              "A Handbook of Agile Software Craftsmanship", 
+                                                skillDic[SkillName.DP], 
+                                                skillDic[SkillName.CLEANCODE], 
+                                                skillDic[SkillName.UNITTEST], 
+                                                skillDic[SkillName.AGILE]);
         }
 
         private static void SeedCourses(FernandoDbContext context, Skill aspDotNetSkill, Skill mvcSkill, Skill dotNETSkill, Skill cSharpSkill, Skill designPatternsSkill, Skill entityFrameworkCoreSkill, Skill ormSkill, Skill pythonSkill, Skill webscrapingSkill, Skill automationSkill)
@@ -544,28 +498,6 @@ namespace FernandoALifeStory.Data.Context.DbContextExtensions
             return course;
         }
 
-        private static Skill SkillGetOrAdd(FernandoDbContext context, string skillName, SkillType skillType)
-        {
-            Skill skill = context.Skills.FirstOrDefault(x => x.Name.Equals(skillName) &&
-                                                                 x.Type == skillType);
-            if (skill is null)
-            {
-                skill = new Skill()
-                {
-                    Name = skillName,
-                    Type = skillType,
 
-                    DisciplineSkills = new List<DisciplineSkill>(),
-                    BookSkills = new List<BookSkill>(),
-                    CertificationSkills = new List<CertificationSkill>(),
-                    CourseSkills = new List<CourseSkill>(),
-                    WorkSkills = new List<WorkSkill>()
-                };
-                context.Skills.Add(skill);
-                context.SaveChanges();
-            }
-
-            return skill;
-        }
     }
 }
