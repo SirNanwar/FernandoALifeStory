@@ -11,6 +11,6 @@ namespace FernandoALifeStory.Data.Models.Books
         public string Name { get; set; }
         public string AuthorName { get; set; }
         public string Description { get; set; }
-        public List<Skill> Skills { get; set; }
+        public List<BookSkills> BookSkills { get; set; }
     }
 }

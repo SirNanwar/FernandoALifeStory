@@ -10,6 +10,6 @@ namespace FernandoALifeStory.Data.Models.Certifications
         public int Id { get; set; }
         public string CertificationName { get; set; }
         public DateTime AdquiredAt { get; set; }
-        public List<Skill> Skills { get; set; }
+        public List<CertificationSkills> CertificationSkills { get; set; }
     }
 }

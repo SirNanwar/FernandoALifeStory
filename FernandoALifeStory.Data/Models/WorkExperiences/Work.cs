@@ -13,6 +13,6 @@ namespace FernandoALifeStory.Data.Models.WorkExperiences
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public List<Achievement> Achievements { get; set; }
-        public List<Skill> Skills { get; set; }
+        public List<WorkSkills> Skills { get; set; }
     }
 }

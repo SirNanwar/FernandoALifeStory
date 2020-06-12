@@ -10,7 +10,7 @@ namespace FernandoALifeStory.Data.Models.Courses
         public int Id { get; set; }
         public string CourseName { get; set; }
         public string Description { get; set; }
-        public List<Skill> Skills { get; set; }
+        public List<CourseSkills> CourseSkills { get; set; }
         public CoursePlatform CoursePlatform { get; set; }
         public int CoursePlatformId { get; set; }
     }

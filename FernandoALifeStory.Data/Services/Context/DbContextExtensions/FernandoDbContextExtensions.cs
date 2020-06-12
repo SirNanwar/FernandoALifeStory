@@ -1,5 +1,6 @@
 ﻿using FernandoALifeStory.Data.Models.Academics;
 using FernandoALifeStory.Data.Models.Books;
+using FernandoALifeStory.Data.Models.Certifications;
 using FernandoALifeStory.Data.Models.Courses;
 using FernandoALifeStory.Data.Models.Skills;
 using FernandoALifeStory.Data.Models.WorkExperiences;
@@ -257,8 +258,10 @@ namespace FernandoALifeStory.Data.Services.Context.DbContextExtensions
                     ECTs = ects,
                     Degree = degree,
                     DegreeId = degree.Id,
-                    Skills = skills.ToList()
+                    DisciplineSkills = new List<DisciplineSkill>()
                 };
+
+                AddSkillRelations(context, discipline, skills);
 
                 degree.Curriculum.Add(discipline);
                 context.Degrees.Update(degree);
@@ -268,6 +271,73 @@ namespace FernandoALifeStory.Data.Services.Context.DbContextExtensions
             }
             discipline.Project ??= new List<Project>();
             return discipline;
+        }
+
+        private static void AddSkillRelations(FernandoDbContext context, object entry, Skill[] skills)
+        {
+            switch (entry)
+            {
+                case Discipline d:
+                    AddDisciplineSkillRelations(context, d, skills);
+                    break;
+                case Book b:
+                    AddBookSkillRelations(context, b, skills);
+                    break;
+                case Certification c:
+                    AddCertificationSkillRelations(context, c, skills);
+                    break;
+                case Course c:
+                    AddCourseSkillRelations(context, c, skills);
+                    break;
+                case Work w:
+                    AddWorkSkillRelations(context, w, skills);
+                    break;
+                default:
+                    throw new ArgumentException();
+            }
+        }
+
+        private static void AddDisciplineSkillRelations(FernandoDbContext context, Discipline d, Skill[] skills)
+        {
+            foreach (Skill skill in skills)
+            {
+                DisciplineSkill disciplineSkill = new DisciplineSkill()
+                {
+                    DisciplineId = d.Id,
+                    Discipline = d,
+                    SkillId = skill.Id,
+                    Skill = skill
+                };
+                d.DisciplineSkills.Add(disciplineSkill);
+                skill.DisciplineSkills.Add(disciplineSkill);
+
+                context.DisciplineSkills.Add(disciplineSkill);
+
+                context.Disciplines.Update(d);
+                context.Skills.Update(skill);
+
+                context.SaveChanges();
+            }
+        }
+
+        private static void AddBookSkillRelations(FernandoDbContext context, Book b, Skill[] skills)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void AddCertificationSkillRelations(FernandoDbContext context, Certification c, Skill[] skills)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void AddCourseSkillRelations(FernandoDbContext context, Course c, Skill[] skills)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void AddWorkSkillRelations(FernandoDbContext context, Work w, Skill[] skills)
+        {
+            throw new NotImplementedException();
         }
 
         private static Degree DegreeGetOrAdd(FernandoDbContext context, string field, EducationLevel level, string institution, DateTime startDate, DateTime endDate, string location)
@@ -393,7 +463,17 @@ namespace FernandoALifeStory.Data.Services.Context.DbContextExtensions
                                                                  x.Type == skillType);
             if (skill is null)
             {
-                skill = new Skill() { Name = skillName, Type = skillType };
+                skill = new Skill() 
+                { 
+                    Name = skillName, 
+                    Type = skillType,
+
+                    DisciplineSkills = new List<DisciplineSkill>(),
+                    BookSkills = new List<BookSkills>(),
+                    CertificationSkills = new List<CertificationSkills>(),
+                    CourseSkills = new List<CourseSkills>(),
+                    WorkSkills = new List<WorkSkills>()
+                };
                 context.Skills.Add(skill);
                 context.SaveChanges();
             }

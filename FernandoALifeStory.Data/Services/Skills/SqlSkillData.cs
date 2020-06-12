@@ -16,7 +16,7 @@ namespace FernandoALifeStory.Data.Services.Skills
         {
             this.skills = db.Skills;
         }
-
+        
         public IEnumerable<Skill> GetAll()
         {
             return skills.OrderBy(x => x.Name);
