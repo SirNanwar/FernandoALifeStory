@@ -48,6 +48,7 @@ namespace FernandoALifeStory.Web
 
             services.AddTransient<ICoursePlatformData, SqlCoursePlatformData>();
             services.AddTransient<ICourseData, SqlCourseData>();
+            services.AddTransient<ICourseSkillData, SqlCourseSkillData>();
 
             services.AddTransient<IDegreeData, SqlDegreeData>();
             services.AddTransient<IDisciplineData, SqlDisciplineData>();

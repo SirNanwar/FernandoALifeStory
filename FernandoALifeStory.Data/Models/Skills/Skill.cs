@@ -16,9 +16,9 @@ namespace FernandoALifeStory.Data.Models.Skills
         public SkillType Type { get; set; }
 
         public List<DisciplineSkill> DisciplineSkills { get; set; }
-        public List<BookSkills> BookSkills { get; set; }
-        public List<CertificationSkills> CertificationSkills { get; set; }
-        public List<CourseSkills> CourseSkills { get; set; }
-        public List<WorkSkills> WorkSkills { get; set; }
+        public List<BookSkill> BookSkills { get; set; }
+        public List<CertificationSkill> CertificationSkills { get; set; }
+        public List<CourseSkill> CourseSkills { get; set; }
+        public List<WorkSkill> WorkSkills { get; set; }
     }
 }

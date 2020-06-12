@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FernandoALifeStory.Data.Migrations
 {
     [DbContext(typeof(FernandoDbContext))]
-    [Migration("20200507075210_InitialCreate")]
+    [Migration("20200612115903_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -74,6 +74,21 @@ namespace FernandoALifeStory.Data.Migrations
                     b.ToTable("Disciplines");
                 });
 
+            modelBuilder.Entity("FernandoALifeStory.Data.Models.Academics.DisciplineSkill", b =>
+                {
+                    b.Property<int>("DisciplineId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SkillId")
+                        .HasColumnType("int");
+
+                    b.HasKey("DisciplineId", "SkillId");
+
+                    b.HasIndex("SkillId");
+
+                    b.ToTable("DisciplineSkills");
+                });
+
             modelBuilder.Entity("FernandoALifeStory.Data.Models.Academics.Project", b =>
                 {
                     b.Property<int>("Id")
@@ -118,6 +133,21 @@ namespace FernandoALifeStory.Data.Migrations
                     b.ToTable("Books");
                 });
 
+            modelBuilder.Entity("FernandoALifeStory.Data.Models.Books.BookSkill", b =>
+                {
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SkillId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BookId", "SkillId");
+
+                    b.HasIndex("SkillId");
+
+                    b.ToTable("BookSkills");
+                });
+
             modelBuilder.Entity("FernandoALifeStory.Data.Models.Certifications.Certification", b =>
                 {
                     b.Property<int>("Id")
@@ -134,6 +164,21 @@ namespace FernandoALifeStory.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Certifications");
+                });
+
+            modelBuilder.Entity("FernandoALifeStory.Data.Models.Certifications.CertificationSkill", b =>
+                {
+                    b.Property<int>("CertificationId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SkillId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CertificationId", "SkillId");
+
+                    b.HasIndex("SkillId");
+
+                    b.ToTable("CertificationSkills");
                 });
 
             modelBuilder.Entity("FernandoALifeStory.Data.Models.Courses.Course", b =>
@@ -174,24 +219,27 @@ namespace FernandoALifeStory.Data.Migrations
                     b.ToTable("CoursePlatforms");
                 });
 
+            modelBuilder.Entity("FernandoALifeStory.Data.Models.Courses.CourseSkill", b =>
+                {
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SkillId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CourseId", "SkillId");
+
+                    b.HasIndex("SkillId");
+
+                    b.ToTable("CourseSkills");
+                });
+
             modelBuilder.Entity("FernandoALifeStory.Data.Models.Skills.Skill", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("BookId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CertificationId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CourseId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("DisciplineId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -202,20 +250,7 @@ namespace FernandoALifeStory.Data.Migrations
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
-                    b.Property<int?>("WorkId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("BookId");
-
-                    b.HasIndex("CertificationId");
-
-                    b.HasIndex("CourseId");
-
-                    b.HasIndex("DisciplineId");
-
-                    b.HasIndex("WorkId");
 
                     b.ToTable("Skills");
                 });
@@ -261,7 +296,22 @@ namespace FernandoALifeStory.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WorkExperiences");
+                    b.ToTable("Works");
+                });
+
+            modelBuilder.Entity("FernandoALifeStory.Data.Models.WorkExperiences.WorkSkill", b =>
+                {
+                    b.Property<int>("WorkId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SkillId")
+                        .HasColumnType("int");
+
+                    b.HasKey("WorkId", "SkillId");
+
+                    b.HasIndex("SkillId");
+
+                    b.ToTable("WorkSkills");
                 });
 
             modelBuilder.Entity("FernandoALifeStory.Data.Models.Academics.Discipline", b =>
@@ -269,6 +319,21 @@ namespace FernandoALifeStory.Data.Migrations
                     b.HasOne("FernandoALifeStory.Data.Models.Academics.Degree", "Degree")
                         .WithMany("Curriculum")
                         .HasForeignKey("DegreeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("FernandoALifeStory.Data.Models.Academics.DisciplineSkill", b =>
+                {
+                    b.HasOne("FernandoALifeStory.Data.Models.Academics.Discipline", "Discipline")
+                        .WithMany("DisciplineSkills")
+                        .HasForeignKey("DisciplineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FernandoALifeStory.Data.Models.Skills.Skill", "Skill")
+                        .WithMany("DisciplineSkills")
+                        .HasForeignKey("SkillId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -282,6 +347,36 @@ namespace FernandoALifeStory.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("FernandoALifeStory.Data.Models.Books.BookSkill", b =>
+                {
+                    b.HasOne("FernandoALifeStory.Data.Models.Books.Book", "Book")
+                        .WithMany("BookSkills")
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FernandoALifeStory.Data.Models.Skills.Skill", "Skill")
+                        .WithMany("BookSkills")
+                        .HasForeignKey("SkillId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("FernandoALifeStory.Data.Models.Certifications.CertificationSkill", b =>
+                {
+                    b.HasOne("FernandoALifeStory.Data.Models.Certifications.Certification", "Certification")
+                        .WithMany("CertificationSkills")
+                        .HasForeignKey("CertificationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FernandoALifeStory.Data.Models.Skills.Skill", "Skill")
+                        .WithMany("CertificationSkills")
+                        .HasForeignKey("SkillId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("FernandoALifeStory.Data.Models.Courses.Course", b =>
                 {
                     b.HasOne("FernandoALifeStory.Data.Models.Courses.CoursePlatform", "CoursePlatform")
@@ -291,33 +386,40 @@ namespace FernandoALifeStory.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("FernandoALifeStory.Data.Models.Skills.Skill", b =>
+            modelBuilder.Entity("FernandoALifeStory.Data.Models.Courses.CourseSkill", b =>
                 {
-                    b.HasOne("FernandoALifeStory.Data.Models.Books.Book", null)
-                        .WithMany("Skills")
-                        .HasForeignKey("BookId");
+                    b.HasOne("FernandoALifeStory.Data.Models.Courses.Course", "Course")
+                        .WithMany("CourseSkills")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("FernandoALifeStory.Data.Models.Certifications.Certification", null)
-                        .WithMany("Skills")
-                        .HasForeignKey("CertificationId");
-
-                    b.HasOne("FernandoALifeStory.Data.Models.Courses.Course", null)
-                        .WithMany("Skills")
-                        .HasForeignKey("CourseId");
-
-                    b.HasOne("FernandoALifeStory.Data.Models.Academics.Discipline", null)
-                        .WithMany("Skills")
-                        .HasForeignKey("DisciplineId");
-
-                    b.HasOne("FernandoALifeStory.Data.Models.WorkExperiences.Work", null)
-                        .WithMany("Skills")
-                        .HasForeignKey("WorkId");
+                    b.HasOne("FernandoALifeStory.Data.Models.Skills.Skill", "Skill")
+                        .WithMany("CourseSkills")
+                        .HasForeignKey("SkillId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("FernandoALifeStory.Data.Models.WorkExperiences.Achievement", b =>
                 {
                     b.HasOne("FernandoALifeStory.Data.Models.WorkExperiences.Work", "Work")
                         .WithMany("Achievements")
+                        .HasForeignKey("WorkId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("FernandoALifeStory.Data.Models.WorkExperiences.WorkSkill", b =>
+                {
+                    b.HasOne("FernandoALifeStory.Data.Models.Skills.Skill", "Skill")
+                        .WithMany("WorkSkills")
+                        .HasForeignKey("SkillId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FernandoALifeStory.Data.Models.WorkExperiences.Work", "Work")
+                        .WithMany("WorkSkills")
                         .HasForeignKey("WorkId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

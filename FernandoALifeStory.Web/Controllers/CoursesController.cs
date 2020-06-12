@@ -14,14 +14,17 @@ namespace FernandoALifeStory.Web.Controllers
     {
         private readonly ICoursePlatformData platformDB;
         private readonly ICourseData courseDB;
+        private readonly ICourseSkillData courseSkillDB;
         private readonly ISkillData skillDB;
 
         public CoursesController(ICoursePlatformData platformDB,
                                  ICourseData courseDB,
+                                 ICourseSkillData courseSkillDB,
                                  ISkillData skillDB)
         {
             this.platformDB = platformDB;
             this.courseDB = courseDB;
+            this.courseSkillDB = courseSkillDB;
             this.skillDB = skillDB;
         }
 
@@ -62,7 +65,9 @@ namespace FernandoALifeStory.Web.Controllers
 
         public IActionResult Skills(int id)
         {
-            var model = skillDB.GetSkillsByMultipleIds(courseDB.GetById(id).Skills.Select(x => x.Id).ToArray());
+            var model = from skills in skillDB.GetAll()
+                        join courseSkill in courseSkillDB.GetByCourseId(id).ToList() on skills.Id equals courseSkill.SkillId
+                        select skills;
 
             if (model is null)
             {

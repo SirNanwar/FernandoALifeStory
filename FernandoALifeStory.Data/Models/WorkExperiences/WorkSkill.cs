@@ -3,12 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace FernandoALifeStory.Data.Models.Books
+namespace FernandoALifeStory.Data.Models.WorkExperiences
 {
-    public class BookSkills
+    public class WorkSkill
     {
-        public int BookId { get; set; }
-        public Book Book { get; set; }
+        public int WorkId { get; set; }
+        public Work Work { get; set; }
 
         public int SkillId { get; set; }
         public Skill Skill { get; set; }

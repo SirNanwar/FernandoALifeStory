@@ -68,7 +68,22 @@ namespace FernandoALifeStory.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "WorkExperiences",
+                name: "Skills",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    Proficiency = table.Column<int>(nullable: false),
+                    Type = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Skills", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Works",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -80,7 +95,7 @@ namespace FernandoALifeStory.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_WorkExperiences", x => x.Id);
+                    table.PrimaryKey("PK_Works", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -126,6 +141,54 @@ namespace FernandoALifeStory.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "BookSkills",
+                columns: table => new
+                {
+                    BookId = table.Column<int>(nullable: false),
+                    SkillId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BookSkills", x => new { x.BookId, x.SkillId });
+                    table.ForeignKey(
+                        name: "FK_BookSkills_Books_BookId",
+                        column: x => x.BookId,
+                        principalTable: "Books",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_BookSkills_Skills_SkillId",
+                        column: x => x.SkillId,
+                        principalTable: "Skills",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CertificationSkills",
+                columns: table => new
+                {
+                    CertificationId = table.Column<int>(nullable: false),
+                    SkillId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CertificationSkills", x => new { x.CertificationId, x.SkillId });
+                    table.ForeignKey(
+                        name: "FK_CertificationSkills_Certifications_CertificationId",
+                        column: x => x.CertificationId,
+                        principalTable: "Certifications",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CertificationSkills_Skills_SkillId",
+                        column: x => x.SkillId,
+                        principalTable: "Skills",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Achievements",
                 columns: table => new
                 {
@@ -138,9 +201,81 @@ namespace FernandoALifeStory.Data.Migrations
                 {
                     table.PrimaryKey("PK_Achievements", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Achievements_WorkExperiences_WorkId",
+                        name: "FK_Achievements_Works_WorkId",
                         column: x => x.WorkId,
-                        principalTable: "WorkExperiences",
+                        principalTable: "Works",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "WorkSkills",
+                columns: table => new
+                {
+                    WorkId = table.Column<int>(nullable: false),
+                    SkillId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WorkSkills", x => new { x.WorkId, x.SkillId });
+                    table.ForeignKey(
+                        name: "FK_WorkSkills_Skills_SkillId",
+                        column: x => x.SkillId,
+                        principalTable: "Skills",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_WorkSkills_Works_WorkId",
+                        column: x => x.WorkId,
+                        principalTable: "Works",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CourseSkills",
+                columns: table => new
+                {
+                    CourseId = table.Column<int>(nullable: false),
+                    SkillId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CourseSkills", x => new { x.CourseId, x.SkillId });
+                    table.ForeignKey(
+                        name: "FK_CourseSkills_Courses_CourseId",
+                        column: x => x.CourseId,
+                        principalTable: "Courses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CourseSkills_Skills_SkillId",
+                        column: x => x.SkillId,
+                        principalTable: "Skills",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DisciplineSkills",
+                columns: table => new
+                {
+                    DisciplineId = table.Column<int>(nullable: false),
+                    SkillId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DisciplineSkills", x => new { x.DisciplineId, x.SkillId });
+                    table.ForeignKey(
+                        name: "FK_DisciplineSkills_Disciplines_DisciplineId",
+                        column: x => x.DisciplineId,
+                        principalTable: "Disciplines",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DisciplineSkills_Skills_SkillId",
+                        column: x => x.SkillId,
+                        principalTable: "Skills",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -166,60 +301,20 @@ namespace FernandoALifeStory.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Skills",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
-                    Proficiency = table.Column<int>(nullable: false),
-                    Type = table.Column<int>(nullable: false),
-                    BookId = table.Column<int>(nullable: true),
-                    CertificationId = table.Column<int>(nullable: true),
-                    CourseId = table.Column<int>(nullable: true),
-                    DisciplineId = table.Column<int>(nullable: true),
-                    WorkId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Skills", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Skills_Books_BookId",
-                        column: x => x.BookId,
-                        principalTable: "Books",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Skills_Certifications_CertificationId",
-                        column: x => x.CertificationId,
-                        principalTable: "Certifications",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Skills_Courses_CourseId",
-                        column: x => x.CourseId,
-                        principalTable: "Courses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Skills_Disciplines_DisciplineId",
-                        column: x => x.DisciplineId,
-                        principalTable: "Disciplines",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Skills_WorkExperiences_WorkId",
-                        column: x => x.WorkId,
-                        principalTable: "WorkExperiences",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Achievements_WorkId",
                 table: "Achievements",
                 column: "WorkId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BookSkills_SkillId",
+                table: "BookSkills",
+                column: "SkillId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CertificationSkills_SkillId",
+                table: "CertificationSkills",
+                column: "SkillId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Courses_CoursePlatformId",
@@ -227,9 +322,19 @@ namespace FernandoALifeStory.Data.Migrations
                 column: "CoursePlatformId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CourseSkills_SkillId",
+                table: "CourseSkills",
+                column: "SkillId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Disciplines_DegreeId",
                 table: "Disciplines",
                 column: "DegreeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DisciplineSkills_SkillId",
+                table: "DisciplineSkills",
+                column: "SkillId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Projects_DisciplineId",
@@ -237,29 +342,9 @@ namespace FernandoALifeStory.Data.Migrations
                 column: "DisciplineId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Skills_BookId",
-                table: "Skills",
-                column: "BookId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Skills_CertificationId",
-                table: "Skills",
-                column: "CertificationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Skills_CourseId",
-                table: "Skills",
-                column: "CourseId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Skills_DisciplineId",
-                table: "Skills",
-                column: "DisciplineId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Skills_WorkId",
-                table: "Skills",
-                column: "WorkId");
+                name: "IX_WorkSkills_SkillId",
+                table: "WorkSkills",
+                column: "SkillId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -268,10 +353,22 @@ namespace FernandoALifeStory.Data.Migrations
                 name: "Achievements");
 
             migrationBuilder.DropTable(
+                name: "BookSkills");
+
+            migrationBuilder.DropTable(
+                name: "CertificationSkills");
+
+            migrationBuilder.DropTable(
+                name: "CourseSkills");
+
+            migrationBuilder.DropTable(
+                name: "DisciplineSkills");
+
+            migrationBuilder.DropTable(
                 name: "Projects");
 
             migrationBuilder.DropTable(
-                name: "Skills");
+                name: "WorkSkills");
 
             migrationBuilder.DropTable(
                 name: "Books");
@@ -286,7 +383,10 @@ namespace FernandoALifeStory.Data.Migrations
                 name: "Disciplines");
 
             migrationBuilder.DropTable(
-                name: "WorkExperiences");
+                name: "Skills");
+
+            migrationBuilder.DropTable(
+                name: "Works");
 
             migrationBuilder.DropTable(
                 name: "CoursePlatforms");

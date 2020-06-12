@@ -3,12 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace FernandoALifeStory.Data.Models.Courses
+namespace FernandoALifeStory.Data.Models.Certifications
 {
-    public class CourseSkills
+    public class CertificationSkill
     {
-        public int CourseId { get; set; }
-        public Course Course { get; set; }
+        public int CertificationId { get; set; }
+        public Certification Certification { get; set; }
 
         public int SkillId { get; set; }
         public Skill Skill { get; set; }

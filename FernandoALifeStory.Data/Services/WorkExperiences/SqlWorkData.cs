@@ -14,7 +14,7 @@ namespace FernandoALifeStory.Data.Services.WorkExperiences
 
         public SqlWorkData(FernandoDbContext db)
         {
-            this.workExperiences = db.WorkExperiences;
+            this.workExperiences = db.Works;
         }
 
         public IEnumerable<Work> GetAll()
