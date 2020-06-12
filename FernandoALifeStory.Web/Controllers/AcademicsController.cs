@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FernandoALifeStory.Data.Services.Academics;
+using FernandoALifeStory.Data.Services.Skills;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FernandoALifeStory.Web.Controllers
@@ -12,14 +13,20 @@ namespace FernandoALifeStory.Web.Controllers
         private readonly IDegreeData degreeDB;
         private readonly IDisciplineData disciplineDB;
         private readonly IProjectData projectDB;
+        private readonly IDisciplineSkillData disciplineSkillDB;
+        private readonly ISkillData skillDB;
 
         public AcademicsController(IDegreeData degreeDB,
                                    IDisciplineData disciplineDB,
-                                   IProjectData projectDB)
+                                   IProjectData projectDB,
+                                   IDisciplineSkillData disciplineSkillDB,
+                                   ISkillData skillDB)
         {
             this.degreeDB = degreeDB;
             this.disciplineDB = disciplineDB;
             this.projectDB = projectDB;
+            this.disciplineSkillDB = disciplineSkillDB;
+            this.skillDB = skillDB;
         }
 
         public IActionResult Index()
@@ -52,6 +59,20 @@ namespace FernandoALifeStory.Web.Controllers
             if (model == null)
             {
                 return View("NotFound");
+            }
+
+            return View(model);
+        }
+
+        public IActionResult Skills(int id)
+        {
+            var model = from skills in skillDB.GetAll()
+                        join disciplineSkill in disciplineSkillDB.GetByDisciplineId(id).ToList() on skills.Id equals disciplineSkill.SkillId
+                        select skills;
+
+            if (model is null)
+            {
+                return View("SkillNotFound");
             }
 
             return View(model);

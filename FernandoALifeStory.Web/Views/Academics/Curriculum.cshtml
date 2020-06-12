@@ -15,7 +15,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.ECTs)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.DisciplineSkills)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Project)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -28,7 +33,10 @@
                 @Html.DisplayFor(modelItem => item.ECTs)
             </td>
             <td>
-                @Html.ActionLink("Project", "Project", new { id=item.Id })
+                @Html.ActionLink("Skills", "Skills", new { id = item.Id })
+            </td>
+            <td>
+                @Html.ActionLink("Project", "Project", new { id = item.Id })
             </td>
         </tr>
 }

@@ -53,14 +53,17 @@ namespace FernandoALifeStory.Web
             services.AddTransient<IDegreeData, SqlDegreeData>();
             services.AddTransient<IDisciplineData, SqlDisciplineData>();
             services.AddTransient<IProjectData, SqlProjectData>();
+            services.AddTransient<IDisciplineSkillData, SqlDisciplineSkillData>();
 
             services.AddTransient<IBookData, SqlBookData>();
+            services.AddTransient<IBookSkillData, SqlBookSkillData>();
 
             services.AddTransient<IWorkData, SqlWorkData>();
             services.AddTransient<IAchievementData, SqlAchievementData>();
             services.AddTransient<IWorkSkillData, SqlWorkSkillData>();
 
             services.AddTransient<ICertificationData, SqlCertificationData>();
+            services.AddTransient<ICertificationSkillData, SqlCertificationSkillData>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 

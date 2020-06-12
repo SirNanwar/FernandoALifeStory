@@ -15,7 +15,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.AuthorName)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookSkills)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -28,7 +33,10 @@
                 @Html.DisplayFor(modelItem => item.AuthorName)
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new { id=item.Id })
+                @Html.ActionLink("Skills", "Skills", new { id = item.Id })
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.Id })
             </td>
         </tr>
 }

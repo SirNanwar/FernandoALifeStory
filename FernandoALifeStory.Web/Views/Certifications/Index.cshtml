@@ -15,7 +15,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.AdquiredAt)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.CertificationSkills)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -26,6 +28,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AdquiredAt)
+            </td>
+            <td>
+                @Html.ActionLink("Skills", "Skills", new { id = item.Id })
             </td>
         </tr>
 }
