@@ -58,6 +58,7 @@ namespace FernandoALifeStory.Web
 
             services.AddTransient<IWorkData, SqlWorkData>();
             services.AddTransient<IAchievementData, SqlAchievementData>();
+            services.AddTransient<IWorkSkillData, SqlWorkSkillData>();
 
             services.AddTransient<ICertificationData, SqlCertificationData>();
 

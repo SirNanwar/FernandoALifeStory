@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FernandoALifeStory.Data.Services.Skills;
 using FernandoALifeStory.Data.Services.WorkExperiences;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,12 +12,18 @@ namespace FernandoALifeStory.Web.Controllers
     {
         private readonly IWorkData workDB;
         private readonly IAchievementData achievementDB;
+        private readonly IWorkSkillData workSkillDB;
+        private readonly ISkillData skillDB;
 
         public WorkExperienceController(IWorkData workDB,
-                                        IAchievementData achievementDB)
+                                        IAchievementData achievementDB,
+                                        IWorkSkillData workSkillDB,
+                                        ISkillData skillDB)
         {
             this.workDB = workDB;
             this.achievementDB = achievementDB;
+            this.workSkillDB = workSkillDB;
+            this.skillDB = skillDB;
         }
 
         public IActionResult Index()
@@ -37,6 +44,20 @@ namespace FernandoALifeStory.Web.Controllers
             if (model is null)
             {
                 return View("NotFound");
+            }
+
+            return View(model);
+        }
+
+        public IActionResult Skills(int id)
+        {
+            var model = from skills in skillDB.GetAll()
+                        join workSkill in workSkillDB.GetByWorkId(id).ToList() on skills.Id equals workSkill.SkillId
+                        select skills;
+
+            if (model is null)
+            {
+                return View("SkillNotFound");
             }
 
             return View(model);

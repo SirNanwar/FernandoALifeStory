@@ -21,7 +21,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.EndDate)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkSkills)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Achievements)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -39,7 +44,7 @@
             <td>
                 @if (item.EndDate is null)
                 {
-                    @Html.Display("Ongoing");
+                    @Html.DisplayText("Ongoing");
                 }
                 else
                 {
@@ -47,7 +52,10 @@
                 }
             </td>
             <td>
-                @Html.ActionLink("Achievements", "Achievements", new { id=item.Id }) |
+                @Html.ActionLink("Skills", "Skills", new { id = item.Id })
+            </td>
+            <td>
+                @Html.ActionLink("Achievements", "Achievements", new { id = item.Id })
             </td>
         </tr>
 }
