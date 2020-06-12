@@ -48,7 +48,7 @@ namespace FernandoALifeStory.Web.Controllers
 
         public IActionResult Skills(int id)
         {
-            var model = from skills in skillDB.GetAll()
+            var model = from skills in skillDB.GetAll().OrderBy(x => x.Type)
                         join bookSkill in bookSkillDB.GetByBookId(id).ToList() on skills.Id equals bookSkill.SkillId
                         select skills;
 

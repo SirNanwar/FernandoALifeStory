@@ -4,7 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
-using FernandoALifeStory.Data.Services.Context;
+using FernandoALifeStory.Data.Context;
 
 namespace FernandoALifeStory.Data.Services.WorkExperiences
 {

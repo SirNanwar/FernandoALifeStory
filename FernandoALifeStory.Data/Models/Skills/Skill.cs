@@ -12,7 +12,6 @@ namespace FernandoALifeStory.Data.Models.Skills
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public SkillProficiency Proficiency { get; set; }
         public SkillType Type { get; set; }
 
         public List<DisciplineSkill> DisciplineSkills { get; set; }

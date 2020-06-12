@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using FernandoALifeStory.Data.Context;
 using FernandoALifeStory.Data.Models.Courses;
-using FernandoALifeStory.Data.Services.Context;
 using Microsoft.EntityFrameworkCore;
 
 namespace FernandoALifeStory.Data.Services.Courses

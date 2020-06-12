@@ -1,5 +1,5 @@
-﻿using FernandoALifeStory.Data.Models.Academics;
-using FernandoALifeStory.Data.Services.Context;
+﻿using FernandoALifeStory.Data.Context;
+using FernandoALifeStory.Data.Models.Academics;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

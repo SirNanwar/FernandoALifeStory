@@ -2,10 +2,10 @@
 {
     public enum SkillType
     {
-        SoftSkill,
-        ConceptSkill,
-        PatternSkill,
+        LanguageSkill,
         TechnologySkill,
-        LanguageSkill
+        PatternSkill,
+        ConceptSkill,
+        SoftSkill
     }
 }
