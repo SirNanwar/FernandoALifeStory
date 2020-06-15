@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FernandoALifeStory.Data.Context.DbContextExtensions
+﻿namespace FernandoALifeStory.Data.Context.DbContextExtensions.SkillContext
 {
     internal static class SkillName
     {

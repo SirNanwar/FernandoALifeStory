@@ -4,20 +4,18 @@ using FernandoALifeStory.Data.Models.Certifications;
 using FernandoALifeStory.Data.Models.Courses;
 using FernandoALifeStory.Data.Models.Skills;
 using FernandoALifeStory.Data.Models.WorkExperiences;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace FernandoALifeStory.Data.Context.DbContextExtensions
+namespace FernandoALifeStory.Data.Context.DbContextExtensions.SkillContext
 {
-    class SkillContextExtension
+    internal class SkillContextExtension
     {
         public Dictionary<string, Skill> Skills { get; set; }
 
         public SkillContextExtension(FernandoDbContext context)
         {
-            this.Skills = new Dictionary<string, Skill>() 
+            Skills = new Dictionary<string, Skill>()
             {
                 { SkillName.CSHARP, SkillGetOrAdd(context, SkillName.CSHARP, SkillType.LanguageSkill)},
                 { SkillName.CPP, SkillGetOrAdd(context, SkillName.CPP, SkillType.LanguageSkill)},
