@@ -1,5 +1,5 @@
 # Fernando A Life Story
-## Version 0.35
+## Version 0.36
 
 Personal portfolio for my academic and professional achievements. 
 

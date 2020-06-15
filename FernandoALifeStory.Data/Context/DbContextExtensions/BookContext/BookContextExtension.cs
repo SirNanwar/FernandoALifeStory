@@ -13,9 +13,9 @@ namespace FernandoALifeStory.Data.Context.DbContextExtensions.BookContext
         public static void SeedBooks(FernandoDbContext context, SkillContextExtension skillsContext)
         {
             Book cleanCodeBook = BookGetOrAdd(context,
-                                              "Clean Code",
-                                              "Robert C. Martin",
-                                              "A Handbook of Agile Software Craftsmanship",
+                                              BookNames.CleanCode.name,
+                                              BookNames.CleanCode.author,
+                                              BookNames.CleanCode.description,
                                               skillsContext.Skills[SkillName.DP],
                                               skillsContext.Skills[SkillName.CLEANCODE],
                                               skillsContext.Skills[SkillName.UNITTEST],

@@ -12,94 +12,94 @@ namespace FernandoALifeStory.Data.Context.DbContextExtensions.AcademicContext
     {
         public static void SeedAcademics(FernandoDbContext context, SkillContextExtension skillsContext)
         {
-            Degree istCSDegree = DegreeGetOrAdd(context, "Computer Science and Engineering", EducationLevel.Bachelor, "Instituto Superior Técnico", new DateTime(2014, 09, 09), new DateTime(2018, 07, 10), "Lisbon - Portugal");
+            Degree istCSDegree = DegreeGetOrAdd(context, AcademicNames.LEIC.field, EducationLevel.Bachelor, AcademicNames.LEIC.institution, new DateTime(2014, 09, 09), new DateTime(2018, 07, 10), AcademicNames.LEIC.location);
             if (context.Degrees.Any(x => x.Field.Equals(istCSDegree.Field) && x.Level.Equals(istCSDegree.Level)))
             {
-                Discipline fp = DisciplineGetOrAdd(context, istCSDegree, "Fundamentos da programação", 7.5, skillsContext.Skills[SkillName.PYTHON]);
+                Discipline fp = DisciplineGetOrAdd(context, istCSDegree, AcademicNames.LEIC_Curriculum.fp, 7.5, skillsContext.Skills[SkillName.PYTHON]);
                 if (context.Disciplines.Any(x => x.Name.Equals(fp.Name)))
                 {
-                    Project cc = ProjectGetOrAdd(context, fp, "Credic Card Generator", "Create a card generator.");
-                    Project game2048 = ProjectGetOrAdd(context, fp, "2048 Game", "Create a version of the game 2048.");
+                    Project cc = ProjectGetOrAdd(context, fp, AcademicNames.CC.name, AcademicNames.CC.description);
+                    Project game2048 = ProjectGetOrAdd(context, fp, AcademicNames.Game2048.name, AcademicNames.Game2048.description);
                 }
-                Discipline iac = DisciplineGetOrAdd(context, istCSDegree, "Introdução à Arquitectura de Computadores", 7.5, skillsContext.Skills[SkillName.ASM]);
+                Discipline iac = DisciplineGetOrAdd(context, istCSDegree, AcademicNames.LEIC_Curriculum.iac, 7.5, skillsContext.Skills[SkillName.ASM]);
                 if (context.Disciplines.Any(x => x.Name.Equals(iac.Name)))
                 {
-                    Project tennis = ProjectGetOrAdd(context, iac, "RoboTenis", "Develop a game of tennis in assembly language");
+                    Project tennis = ProjectGetOrAdd(context, iac, AcademicNames.Tennis.name, AcademicNames.Tennis.description);
                 }
-                Discipline iaed = DisciplineGetOrAdd(context, istCSDegree, "Introdução aos Algoritmos e Estruturas de Dados", 7.5, skillsContext.Skills[SkillName.C], skillsContext.Skills[SkillName.ALGORITHM]);
-                Discipline lp = DisciplineGetOrAdd(context, istCSDegree, "Lógica para Programação", 7.5, skillsContext.Skills[SkillName.PROLOG], skillsContext.Skills[SkillName.SEARCHALG]);
+                Discipline iaed = DisciplineGetOrAdd(context, istCSDegree, AcademicNames.LEIC_Curriculum.iaed, 7.5, skillsContext.Skills[SkillName.C], skillsContext.Skills[SkillName.ALGORITHM]);
+                Discipline lp = DisciplineGetOrAdd(context, istCSDegree, AcademicNames.LEIC_Curriculum.lp, 7.5, skillsContext.Skills[SkillName.PROLOG], skillsContext.Skills[SkillName.SEARCHALG]);
                 if (context.Disciplines.Any(x => x.Name.Equals(lp.Name)))
                 {
-                    Project puzzle8 = ProjectGetOrAdd(context, lp, "Puzzle of 8", "Develop a version of puzzle of 8 game, and solving algorithms");
+                    Project puzzle8 = ProjectGetOrAdd(context, lp, AcademicNames.Puzzle8.name, AcademicNames.Puzzle8.description);
                 }
-                Discipline so = DisciplineGetOrAdd(context, istCSDegree, "Sistemas Operativos", 6.0, skillsContext.Skills[SkillName.C], skillsContext.Skills[SkillName.ASYNC]);
+                Discipline so = DisciplineGetOrAdd(context, istCSDegree, AcademicNames.LEIC_Curriculum.so, 6.0, skillsContext.Skills[SkillName.C], skillsContext.Skills[SkillName.ASYNC]);
                 if (context.Disciplines.Any(x => x.Name.Equals(so.Name)))
                 {
-                    Project parshell = ProjectGetOrAdd(context, so, "Par-Shell", "Develop asynchronous proggramming practices on a fibonacci number calculator.");
+                    Project parshell = ProjectGetOrAdd(context, so, AcademicNames.Parshell.name, AcademicNames.Parshell.description);
                 }
-                Discipline asa = DisciplineGetOrAdd(context, istCSDegree, "Análise e Síntese de Algoritmos", 6.0, skillsContext.Skills[SkillName.C], skillsContext.Skills[SkillName.ALGORITHM], skillsContext.Skills[SkillName.BIGO]);
+                Discipline asa = DisciplineGetOrAdd(context, istCSDegree, AcademicNames.LEIC_Curriculum.asa, 6.0, skillsContext.Skills[SkillName.C], skillsContext.Skills[SkillName.ALGORITHM], skillsContext.Skills[SkillName.BIGO]);
                 if (context.Disciplines.Any(x => x.Name.Equals(asa.Name)))
                 {
-                    Project fundamentalUsers = ProjectGetOrAdd(context, asa, "Fundamental Users", "Develop an algorith to find the fundamental users in a communication network.");
-                    Project coelhoECaracol = ProjectGetOrAdd(context, asa, "Coelho&Caracol", "Develop an algorith to find the most efficient path in a graph transversal");
+                    Project fundamentalUsers = ProjectGetOrAdd(context, asa, AcademicNames.FundamentalUser.name, AcademicNames.FundamentalUser.description);
+                    Project coelhoECaracol = ProjectGetOrAdd(context, asa, AcademicNames.CoelhoCaracol.name, AcademicNames.CoelhoCaracol.description);
                 }
-                Discipline ipm = DisciplineGetOrAdd(context, istCSDegree, "Interfaces Pessoa Máquina", 7.5, skillsContext.Skills[SkillName.HTML], skillsContext.Skills[SkillName.JS]);
+                Discipline ipm = DisciplineGetOrAdd(context, istCSDegree, AcademicNames.LEIC_Curriculum.ipm, 7.5, skillsContext.Skills[SkillName.HTML], skillsContext.Skills[SkillName.JS]);
                 if (context.Disciplines.Any(x => x.Name.Equals(ipm.Name)))
                 {
-                    Project barista = ProjectGetOrAdd(context, ipm, "BarISTa", "Develop an application to simulate a smart bar table");
+                    Project barista = ProjectGetOrAdd(context, ipm, AcademicNames.Barista.name, AcademicNames.Barista.description);
                 }
-                Discipline bd = DisciplineGetOrAdd(context, istCSDegree, "Bases de Dados", 6.0, skillsContext.Skills[SkillName.SQL], skillsContext.Skills[SkillName.RELDB]);
+                Discipline bd = DisciplineGetOrAdd(context, istCSDegree, AcademicNames.LEIC_Curriculum.bd, 6.0, skillsContext.Skills[SkillName.SQL], skillsContext.Skills[SkillName.RELDB]);
                 if (context.Disciplines.Any(x => x.Name.Equals(bd.Name)))
                 {
-                    Project office = ProjectGetOrAdd(context, bd, "Instant Office", "Create a database model for an application");
+                    Project office = ProjectGetOrAdd(context, bd, AcademicNames.Office.name, AcademicNames.Office.description);
                 }
-                Discipline cg = DisciplineGetOrAdd(context, istCSDegree, "Computação Gráfica", 4.5, skillsContext.Skills[SkillName.JS]);
+                Discipline cg = DisciplineGetOrAdd(context, istCSDegree, AcademicNames.LEIC_Curriculum.cg, 4.5, skillsContext.Skills[SkillName.JS]);
                 if (context.Disciplines.Any(x => x.Name.Equals(cg.Name)))
                 {
-                    Project invader = ProjectGetOrAdd(context, cg, "Space Invader", "Create a 3d version of the game Space Invaders");
+                    Project invader = ProjectGetOrAdd(context, cg, AcademicNames.SpaceInvader.name, AcademicNames.SpaceInvader.description);
                 }
-                Discipline ia = DisciplineGetOrAdd(context, istCSDegree, "Inteligência Artificial", 7.5, skillsContext.Skills[SkillName.LISP], skillsContext.Skills[SkillName.SEARCHALG], skillsContext.Skills[SkillName.LEARNALG], skillsContext.Skills[SkillName.KNOWLEDGE]);
+                Discipline ia = DisciplineGetOrAdd(context, istCSDegree, AcademicNames.LEIC_Curriculum.ia, 7.5, skillsContext.Skills[SkillName.LISP], skillsContext.Skills[SkillName.SEARCHALG], skillsContext.Skills[SkillName.LEARNALG], skillsContext.Skills[SkillName.KNOWLEDGE]);
                 if (context.Disciplines.Any(x => x.Name.Equals(ia.Name)))
                 {
-                    Project racer = ProjectGetOrAdd(context, ia, "Racetrack", "Create an agent to play Racetrack autonomously");
+                    Project racer = ProjectGetOrAdd(context, ia, AcademicNames.Racetrack.name, AcademicNames.Racetrack.description);
                 }
-                Discipline oc = DisciplineGetOrAdd(context, istCSDegree, "Organização de Computadores", 6.0, skillsContext.Skills[SkillName.COMPARCH], skillsContext.Skills[SkillName.MEMMANA]);
-                Discipline po = DisciplineGetOrAdd(context, istCSDegree, "Programação com Objectos", 6.0, skillsContext.Skills[SkillName.JAVA], skillsContext.Skills[SkillName.DP], skillsContext.Skills[SkillName.OOP]);
+                Discipline oc = DisciplineGetOrAdd(context, istCSDegree, AcademicNames.LEIC_Curriculum.oc, 6.0, skillsContext.Skills[SkillName.COMPARCH], skillsContext.Skills[SkillName.MEMMANA]);
+                Discipline po = DisciplineGetOrAdd(context, istCSDegree, AcademicNames.LEIC_Curriculum.po, 6.0, skillsContext.Skills[SkillName.JAVA], skillsContext.Skills[SkillName.DP], skillsContext.Skills[SkillName.OOP]);
                 if (context.Disciplines.Any(x => x.Name.Equals(po.Name)))
                 {
-                    Project interpretor = ProjectGetOrAdd(context, po, "Program Interpretor", "Create a program to manage a set of programs and expressions");
+                    Project interpretor = ProjectGetOrAdd(context, po, AcademicNames.Interpretor.name, AcademicNames.Interpretor.description);
                 }
-                Discipline es = DisciplineGetOrAdd(context, istCSDegree, "Engenharia de Software", 7.5, skillsContext.Skills[SkillName.JAVA], skillsContext.Skills[SkillName.JUNIT], skillsContext.Skills[SkillName.JMOCKIT], skillsContext.Skills[SkillName.SPRING], skillsContext.Skills[SkillName.JMETER], skillsContext.Skills[SkillName.MYSQL], skillsContext.Skills[SkillName.UNITTEST], skillsContext.Skills[SkillName.AGILE]);
+                Discipline es = DisciplineGetOrAdd(context, istCSDegree, AcademicNames.LEIC_Curriculum.es, 7.5, skillsContext.Skills[SkillName.JAVA], skillsContext.Skills[SkillName.JUNIT], skillsContext.Skills[SkillName.JMOCKIT], skillsContext.Skills[SkillName.SPRING], skillsContext.Skills[SkillName.JMETER], skillsContext.Skills[SkillName.MYSQL], skillsContext.Skills[SkillName.UNITTEST], skillsContext.Skills[SkillName.AGILE]);
                 if (context.Disciplines.Any(x => x.Name.Equals(es.Name)))
                 {
-                    Project adventureBuilder = ProjectGetOrAdd(context, es, "Adventure Builder", "Leisure activity offer system");
+                    Project adventureBuilder = ProjectGetOrAdd(context, es, AcademicNames.Builder.name, AcademicNames.Builder.description);
                 }
-                Discipline sd = DisciplineGetOrAdd(context, istCSDegree, "Sistemas Distribuídos", 7.5, skillsContext.Skills[SkillName.WEBSERV], skillsContext.Skills[SkillName.CRYPTOG]);
-                Discipline rc = DisciplineGetOrAdd(context, istCSDegree, "Redes de Computadores", 6.0, skillsContext.Skills[SkillName.CLOUDCOMP], skillsContext.Skills[SkillName.HTTP]);
-                Discipline ams = DisciplineGetOrAdd(context, istCSDegree, "Análise e Modelação de Sistemas", 6.0, skillsContext.Skills[SkillName.UML], skillsContext.Skills[SkillName.ARCHI], skillsContext.Skills[SkillName.BPMN], skillsContext.Skills[SkillName.SYSML]);
+                Discipline sd = DisciplineGetOrAdd(context, istCSDegree, AcademicNames.LEIC_Curriculum.sd, 7.5, skillsContext.Skills[SkillName.WEBSERV], skillsContext.Skills[SkillName.CRYPTOG]);
+                Discipline rc = DisciplineGetOrAdd(context, istCSDegree, AcademicNames.LEIC_Curriculum.rc, 6.0, skillsContext.Skills[SkillName.CLOUDCOMP], skillsContext.Skills[SkillName.HTTP]);
+                Discipline ams = DisciplineGetOrAdd(context, istCSDegree, AcademicNames.LEIC_Curriculum.ams, 6.0, skillsContext.Skills[SkillName.UML], skillsContext.Skills[SkillName.ARCHI], skillsContext.Skills[SkillName.BPMN], skillsContext.Skills[SkillName.SYSML]);
                 if (context.Disciplines.Any(x => x.Name.Equals(ams.Name)))
                 {
-                    Project baik = ProjectGetOrAdd(context, ams, "BAIK", "Bicicle sharing business model");
+                    Project baik = ProjectGetOrAdd(context, ams, AcademicNames.Baik.name, AcademicNames.Baik.description);
                 }
-                Discipline comp = DisciplineGetOrAdd(context, istCSDegree, "Compiladores", 6.0, skillsContext.Skills[SkillName.CPP]);
+                Discipline comp = DisciplineGetOrAdd(context, istCSDegree, AcademicNames.LEIC_Curriculum.comp, 6.0, skillsContext.Skills[SkillName.CPP]);
                 if (context.Disciplines.Any(x => x.Name.Equals(comp.Name)))
                 {
-                    Project gr8 = ProjectGetOrAdd(context, comp, "Gr8 language compilator", "Development of a compilator of a ficticious programming language gr8. Concepts of parsing, lexing and tokenizing.");
+                    Project gr8 = ProjectGetOrAdd(context, comp, AcademicNames.Gr8.name, AcademicNames.Gr8.description);
                 }
 
-                Discipline al = DisciplineGetOrAdd(context, istCSDegree, "Álgebra Linear", 6.0);
-                Discipline md = DisciplineGetOrAdd(context, istCSDegree, "Matemática Discreta", 7.5);
-                Discipline mo = DisciplineGetOrAdd(context, istCSDegree, "Mecânica e Ondas", 6.0);
-                Discipline cdiI = DisciplineGetOrAdd(context, istCSDegree, "Cálculo Diferencial e Integral I", 6.0);
-                Discipline eo = DisciplineGetOrAdd(context, istCSDegree, "Electromagnetismo e Óptica", 6.0);
-                Discipline tc = DisciplineGetOrAdd(context, istCSDegree, "Teoria da Computação", 4.5);
-                Discipline cdiII = DisciplineGetOrAdd(context, istCSDegree, "Cálculo Diferencial e Integral II", 7.5);
-                Discipline pe = DisciplineGetOrAdd(context, istCSDegree, "Probabilidades e Estatística", 6.0);
-                Discipline aced = DisciplineGetOrAdd(context, istCSDegree, "Análise Complexa e Equações Diferenciais", 7.5);
+                Discipline al = DisciplineGetOrAdd(context, istCSDegree, AcademicNames.LEIC_Curriculum.al, 6.0);
+                Discipline md = DisciplineGetOrAdd(context, istCSDegree, AcademicNames.LEIC_Curriculum.md, 7.5);
+                Discipline mo = DisciplineGetOrAdd(context, istCSDegree, AcademicNames.LEIC_Curriculum.mo, 6.0);
+                Discipline cdiI = DisciplineGetOrAdd(context, istCSDegree, AcademicNames.LEIC_Curriculum.cdiI, 6.0);
+                Discipline eo = DisciplineGetOrAdd(context, istCSDegree, AcademicNames.LEIC_Curriculum.eo, 6.0);
+                Discipline tc = DisciplineGetOrAdd(context, istCSDegree, AcademicNames.LEIC_Curriculum.tc, 4.5);
+                Discipline cdiII = DisciplineGetOrAdd(context, istCSDegree, AcademicNames.LEIC_Curriculum.cdiII, 7.5);
+                Discipline pe = DisciplineGetOrAdd(context, istCSDegree, AcademicNames.LEIC_Curriculum.pe, 6.0);
+                Discipline aced = DisciplineGetOrAdd(context, istCSDegree, AcademicNames.LEIC_Curriculum.aced, 7.5);
 
-                Discipline iei = DisciplineGetOrAdd(context, istCSDegree, "Introdução à Engenharia Informática", 3.0);
-                Discipline ges = DisciplineGetOrAdd(context, istCSDegree, "Gestão", 4.5);
-                Discipline cs = DisciplineGetOrAdd(context, istCSDegree, "Computação e Sociedade", 3.0);
+                Discipline iei = DisciplineGetOrAdd(context, istCSDegree, AcademicNames.LEIC_Curriculum.iei, 3.0);
+                Discipline ges = DisciplineGetOrAdd(context, istCSDegree, AcademicNames.LEIC_Curriculum.ges, 4.5);
+                Discipline cs = DisciplineGetOrAdd(context, istCSDegree, AcademicNames.LEIC_Curriculum.cs, 3.0);
             }
         }
 

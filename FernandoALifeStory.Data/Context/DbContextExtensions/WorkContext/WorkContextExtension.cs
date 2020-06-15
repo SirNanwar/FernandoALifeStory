@@ -12,17 +12,17 @@ namespace FernandoALifeStory.Data.Context.DbContextExtensions.WorkContext
     {
         public static void SeedWorkExperiences(FernandoDbContext context, SkillContextExtension skillsContext)
         {
-            Work collabWork = WorkExperienceGetOrAdd(context, "Collab", "Software Engineer", new DateTime(2018, 08, 10), null,
+            Work collabWork = WorkExperienceGetOrAdd(context, WorkNames.COLLAB.name, WorkNames.COLLAB.position, new DateTime(2018, 08, 10), null,
                 skillsContext.Skills[SkillName.DOTNET], skillsContext.Skills[SkillName.CSHARP], skillsContext.Skills[SkillName.EFCORE], skillsContext.Skills[SkillName.ORM],
                 skillsContext.Skills[SkillName.UNITTEST], skillsContext.Skills[SkillName.AGILE], skillsContext.Skills[SkillName.AUTOTEST], skillsContext.Skills[SkillName.REST],
                 skillsContext.Skills[SkillName.VOIP], skillsContext.Skills[SkillName.CYBERSEC], skillsContext.Skills[SkillName.CI], skillsContext.Skills[SkillName.CPP],
                 skillsContext.Skills[SkillName.SQLSERVER], skillsContext.Skills[SkillName.VS], skillsContext.Skills[SkillName.AZURE], skillsContext.Skills[SkillName.SELENIUM]);
             if (context.Works.Any(x => x.CompanyName.Equals(collabWork.CompanyName)))
             {
-                Achievement microsservice = AchievementGetOrAdd(context, collabWork, "Developed a microservice REST API of asynchronous messaging with Entity Framework Core.");
-                Achievement encryption = AchievementGetOrAdd(context, collabWork, "Implemented real time encryption of RTP video calls. ");
-                Achievement autoTest = AchievementGetOrAdd(context, collabWork, "Guaranteed product continuous integration, developing integration and functional automated testing.");
-                Achievement sipDev = AchievementGetOrAdd(context, collabWork, "Worked on developing SIP solutions for VoIP calls. ");
+                Achievement microsservice = AchievementGetOrAdd(context, collabWork, WorkNames.COLLAB.apied);
+                Achievement encryption = AchievementGetOrAdd(context, collabWork, WorkNames.COLLAB.encrypted);
+                Achievement autoTest = AchievementGetOrAdd(context, collabWork, WorkNames.COLLAB.autotested);
+                Achievement sipDev = AchievementGetOrAdd(context, collabWork, WorkNames.COLLAB.siped);
             }
         }
 

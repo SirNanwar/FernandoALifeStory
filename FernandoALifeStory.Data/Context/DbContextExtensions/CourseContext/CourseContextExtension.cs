@@ -12,19 +12,19 @@ namespace FernandoALifeStory.Data.Context.DbContextExtensions.CourseContext
     {
         public static void SeedCourses(FernandoDbContext context, SkillContextExtension skillsContext)
         {
-            CoursePlatform pluralsightPlatform = CoursePlatformGetOrAdd(context, "Pluralsight");
+            CoursePlatform pluralsightPlatform = CoursePlatformGetOrAdd(context, CourseNames.Platforms.pluralsight);
             if (context.CoursePlatforms.Any(x => x.Name.Equals(pluralsightPlatform.Name)))
             {
-                Course aspDotNetMVCFundamentals = CourseGetOrAdd(context, pluralsightPlatform, "ASP.NET MVC 5 Fundamentals", "Fundamentals to ASP.NET MVC", skillsContext.Skills[SkillName.ASPDOTNET], skillsContext.Skills[SkillName.MVC], skillsContext.Skills[SkillName.DOTNET], skillsContext.Skills[SkillName.CSHARP]);
-                Course entityFrameworkCore2GettingStarted = CourseGetOrAdd(context, pluralsightPlatform, "Entity Framework Core 2: Getting Started", "First introduction to Entity Framework Core 2, a Microsot O/RM", skillsContext.Skills[SkillName.DOTNET], skillsContext.Skills[SkillName.CSHARP], skillsContext.Skills[SkillName.EFCORE], skillsContext.Skills[SkillName.ORM]);
-                Course cSharpFundamentals = CourseGetOrAdd(context, pluralsightPlatform, "C# Fundamentals", "Fundamentals to C# programming", skillsContext.Skills[SkillName.DOTNET], skillsContext.Skills[SkillName.CSHARP]);
+                Course aspDotNetMVCFundamentals = CourseGetOrAdd(context, pluralsightPlatform, CourseNames.AspDotNetMvc.name, CourseNames.AspDotNetMvc.description, skillsContext.Skills[SkillName.ASPDOTNET], skillsContext.Skills[SkillName.MVC], skillsContext.Skills[SkillName.DOTNET], skillsContext.Skills[SkillName.CSHARP]);
+                Course entityFrameworkCore2GettingStarted = CourseGetOrAdd(context, pluralsightPlatform, CourseNames.EFCoreStart.name, CourseNames.EFCoreStart.description, skillsContext.Skills[SkillName.DOTNET], skillsContext.Skills[SkillName.CSHARP], skillsContext.Skills[SkillName.EFCORE], skillsContext.Skills[SkillName.ORM]);
+                Course cSharpFundamentals = CourseGetOrAdd(context, pluralsightPlatform, CourseNames.CSharpFundament.name, CourseNames.CSharpFundament.description, skillsContext.Skills[SkillName.DOTNET], skillsContext.Skills[SkillName.CSHARP]);
             }
 
-            CoursePlatform udemyPlatform = CoursePlatformGetOrAdd(context, "Udemy");
+            CoursePlatform udemyPlatform = CoursePlatformGetOrAdd(context, CourseNames.Platforms.udemy);
             if (context.CoursePlatforms.Any(x => x.Name.Equals(udemyPlatform.Name)))
             {
-                Course designPatternsInCSharp = CourseGetOrAdd(context, udemyPlatform, "Design Patterns in C# and .NET", "A comprehensive overview of Design Patterns in C# and .NET from a practical perspective.", skillsContext.Skills[SkillName.DOTNET], skillsContext.Skills[SkillName.CSHARP], skillsContext.Skills[SkillName.DP]);
-                Course automateTheBoringStuffWithPython = CourseGetOrAdd(context, udemyPlatform, "Automate the Boring Stuff with Python Programming", "If you're an office worker, student, administrator, or just want to become more productive with your computer, programming will allow you write code that can automate tedious tasks. This course follows the popular (and free!) book, Automate the Boring Stuff with Python.", skillsContext.Skills[SkillName.PYTHON], skillsContext.Skills[SkillName.WEBSCRAP], skillsContext.Skills[SkillName.AUTOMATION]);
+                Course designPatternsInCSharp = CourseGetOrAdd(context, udemyPlatform, CourseNames.DPatternsCSharp.name, CourseNames.DPatternsCSharp.description, skillsContext.Skills[SkillName.DOTNET], skillsContext.Skills[SkillName.CSHARP], skillsContext.Skills[SkillName.DP]);
+                Course automateTheBoringStuffWithPython = CourseGetOrAdd(context, udemyPlatform, CourseNames.AutoBoringStuffPython.name, CourseNames.AutoBoringStuffPython.description, skillsContext.Skills[SkillName.PYTHON], skillsContext.Skills[SkillName.WEBSCRAP], skillsContext.Skills[SkillName.AUTOMATION]);
             }
         }
 

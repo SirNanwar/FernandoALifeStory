@@ -22,18 +22,13 @@ namespace FernandoALifeStory.Data.Context.DbContextExtensions
     {
         public static void EnsureDatabaseSeeded(this FernandoDbContext context)
         {
-            #region Skills
-            SkillContextExtension SkillsContext = new SkillContextExtension(context);
-            #endregion
+            SkillContextExtension SkillsContext = new SkillContextExtension()
+                                                        .SeedSkills(context);
 
             BookContextExtension.SeedBooks(context, SkillsContext);
-
             CertificationContextExtension.SeedCertifications(context, SkillsContext);
-
             CourseContextExtension.SeedCourses(context, SkillsContext);
-
             WorkContextExtension.SeedWorkExperiences(context, SkillsContext);
-
             AcademicContextExtension.SeedAcademics(context, SkillsContext);
         }
     }
