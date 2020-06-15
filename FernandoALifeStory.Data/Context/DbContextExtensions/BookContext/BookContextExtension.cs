@@ -1,14 +1,12 @@
 ﻿using FernandoALifeStory.Data.Context.DbContextExtensions.SkillContext;
 using FernandoALifeStory.Data.Models.Books;
 using FernandoALifeStory.Data.Models.Skills;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace FernandoALifeStory.Data.Context.DbContextExtensions.BookContext
 {
-    static class BookContextExtension
+    internal static class BookContextExtension
     {
         public static void SeedBooks(FernandoDbContext context, SkillContextExtension skillsContext)
         {
@@ -22,7 +20,7 @@ namespace FernandoALifeStory.Data.Context.DbContextExtensions.BookContext
                                               skillsContext.Skills[SkillName.AGILE]);
         }
 
-        private static Book BookGetOrAdd(FernandoDbContext context,  string name, string author, string description, params Skill[] skills)
+        private static Book BookGetOrAdd(FernandoDbContext context, string name, string author, string description, params Skill[] skills)
         {
             Book book = context.Books.FirstOrDefault(x => x.Name.Equals(name));
             if (book is null)

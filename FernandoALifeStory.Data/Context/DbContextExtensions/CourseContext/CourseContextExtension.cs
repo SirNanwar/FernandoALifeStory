@@ -1,14 +1,12 @@
 ﻿using FernandoALifeStory.Data.Context.DbContextExtensions.SkillContext;
 using FernandoALifeStory.Data.Models.Courses;
 using FernandoALifeStory.Data.Models.Skills;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace FernandoALifeStory.Data.Context.DbContextExtensions.CourseContext
 {
-    static class CourseContextExtension
+    internal static class CourseContextExtension
     {
         public static void SeedCourses(FernandoDbContext context, SkillContextExtension skillsContext)
         {

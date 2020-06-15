@@ -4,11 +4,10 @@ using FernandoALifeStory.Data.Models.WorkExperiences;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace FernandoALifeStory.Data.Context.DbContextExtensions.WorkContext
 {
-    static class WorkContextExtension
+    internal static class WorkContextExtension
     {
         public static void SeedWorkExperiences(FernandoDbContext context, SkillContextExtension skillsContext)
         {

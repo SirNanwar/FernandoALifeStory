@@ -4,7 +4,6 @@ using FernandoALifeStory.Data.Models.Certifications;
 using FernandoALifeStory.Data.Models.Courses;
 using FernandoALifeStory.Data.Models.WorkExperiences;
 using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace FernandoALifeStory.Data.Models.Skills
 {

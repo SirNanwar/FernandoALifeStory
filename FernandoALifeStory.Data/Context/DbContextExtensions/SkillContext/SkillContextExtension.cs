@@ -13,7 +13,7 @@ namespace FernandoALifeStory.Data.Context.DbContextExtensions.SkillContext
     {
         public Dictionary<string, Skill> Skills { get; set; }
 
-        public SkillContextExtension SeedSkills(FernandoDbContext context) 
+        public SkillContextExtension SeedSkills(FernandoDbContext context)
         {
             if (Skills is null)
             {

@@ -5,10 +5,6 @@ using FernandoALifeStory.Data.Models.Courses;
 using FernandoALifeStory.Data.Models.Skills;
 using FernandoALifeStory.Data.Models.WorkExperiences;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.IO.IsolatedStorage;
-using System.Text;
 
 namespace FernandoALifeStory.Data.Context
 {

@@ -1,10 +1,8 @@
 ﻿using FernandoALifeStory.Data.Context;
 using FernandoALifeStory.Data.Models.Academics;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace FernandoALifeStory.Data.Services.Academics
 {

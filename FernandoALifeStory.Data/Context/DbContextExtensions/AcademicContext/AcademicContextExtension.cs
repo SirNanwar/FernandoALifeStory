@@ -4,11 +4,10 @@ using FernandoALifeStory.Data.Models.Skills;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace FernandoALifeStory.Data.Context.DbContextExtensions.AcademicContext
 {
-    static class AcademicContextExtension
+    internal static class AcademicContextExtension
     {
         public static void SeedAcademics(FernandoDbContext context, SkillContextExtension skillsContext)
         {

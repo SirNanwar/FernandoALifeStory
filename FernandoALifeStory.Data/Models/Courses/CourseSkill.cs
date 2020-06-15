@@ -1,7 +1,4 @@
 ﻿using FernandoALifeStory.Data.Models.Skills;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FernandoALifeStory.Data.Models.Courses
 {

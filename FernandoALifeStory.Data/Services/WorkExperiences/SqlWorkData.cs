@@ -1,10 +1,8 @@
-﻿using FernandoALifeStory.Data.Models.WorkExperiences;
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Text;
+﻿using FernandoALifeStory.Data.Context;
+using FernandoALifeStory.Data.Models.WorkExperiences;
 using Microsoft.EntityFrameworkCore;
-using FernandoALifeStory.Data.Context;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace FernandoALifeStory.Data.Services.WorkExperiences
 {
