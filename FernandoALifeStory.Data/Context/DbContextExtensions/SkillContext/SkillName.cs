@@ -14,7 +14,7 @@
         internal const string JS = "JavaScript";
         internal const string SQL = "SQL";
         internal const string HTML = "HTML";
-        internal const string C = "Java";
+        internal const string C = "C";
         internal const string PROLOG = "Prolog";
         internal const string ASM = "Assembly";
 

@@ -9,7 +9,7 @@ namespace FernandoALifeStory.Data.Context.DbContextExtensions.CertificationConte
     {
         public static void SeedCertifications(FernandoDbContext context, SkillContextExtension skills)
         {
-            throw new NotImplementedException();
+
         }
     }
 }
