@@ -1,6 +1,16 @@
-﻿body {
+﻿/*
+    Palette:
+    #666699 
+    #336699
+    #cccccf
+    #3399cc
+    #ff9966
+*/
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: #cccccf;
 }
 
 .body-content {
@@ -18,15 +28,10 @@
     color: #ff9966;
 }
 
-@media (min-width: 992px) .col-md-3 {
-    width: 75%;
+.navbar-inverse .navbar-nav > li > a {
+    color: #ff9966;
 }
 
-
-/*
-    #666699
-    #336699
-    #cccccf
-    #3399cc
-    #ff9966
-*/
+.col-md-3 {
+    width: 75%;
+}
